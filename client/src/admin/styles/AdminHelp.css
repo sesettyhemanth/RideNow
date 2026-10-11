@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Admin Help & Support - RideNow
+   Reuses the .st-* tokens, cards and dark-mode rules from AdminSettings.css
+   ========================================================================== */
+
+/* ---------- FAQ accordion ---------- */
+.hp-faq {
+  display: flex;
+  flex-direction: column;
+}
+
+.hp-faq__item {
+  border-top: 1px solid var(--st-line);
+}
+.hp-faq__item:first-child {
+  border-top: 0;
+}
+
+.hp-faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--st-ink);
+  cursor: pointer;
+  list-style: none;
+}
+.hp-faq__item summary::-webkit-details-marker {
+  display: none;
+}
+.hp-faq__item summary:hover {
+  color: var(--st-accent-strong);
+}
+.hp-faq__item summary:focus-visible {
+  outline: 2px solid var(--st-accent-strong);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.hp-faq__chev {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--st-line);
+  border-radius: 50%;
+  transition: transform 0.2s ease, background 0.15s ease;
+}
+.hp-faq__item[open] .hp-faq__chev {
+  transform: rotate(90deg);
+  background: var(--st-accent-soft);
+}
+
+.hp-faq__item p {
+  margin: 0;
+  padding: 0 40px 16px 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--st-muted);
+}
+
+/* ---------- contact card ---------- */
+.hp-contact__list {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+.hp-contact__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+}
+.hp-contact__list small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--st-muted);
+}
+.hp-contact__list strong,
+.hp-contact__list a {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--st-ink);
+  text-decoration: none;
+  word-break: break-word;
+}
+.hp-contact__list a:hover {
+  color: var(--st-accent-strong);
+}
+
+.hp-contact__btn {
+  text-decoration: none;
+}
+
+/* "Go to" links are <a> tags styled like the Settings quick links */
+.hp-link {
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-faq__chev {
+    transition: none;
+  }
+}

@@ -1,0 +1,49 @@
+
+body:has(.payment-page),
+body:has(.license-page),
+body:has(.confirmation-page) {
+  background-color: var(--bg-cream, #fff5e6);
+}
+
+body:has(.payment-page) #root,
+body:has(.license-page) #root,
+body:has(.confirmation-page) #root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-page,
+.license-page {
+  width: 100%;
+  padding-bottom: 60px;
+}
+
+.wizard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.wizard-error {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  color: #991b1b;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+}
+
+/* step headings are <h2> inside the wizard */
+.wizard-step-title {
+  margin: 0 0 6px;
+  color: var(--navy);
+}
+
+.wizard-step-subtitle {
+  margin: 0 0 20px;
+  color: #6b7280;
+}

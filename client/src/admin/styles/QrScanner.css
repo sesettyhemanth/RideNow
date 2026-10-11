@@ -1,0 +1,151 @@
+/* QR scanner modal (admin header) */
+
+.qr-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(14, 26, 48, 0.55);
+}
+
+.qr-modal {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(16, 24, 40, 0.3);
+  overflow: hidden;
+}
+
+.qr-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--a-line);
+}
+.qr-modal__head h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--a-ink);
+}
+.qr-modal__close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--a-ink);
+  cursor: pointer;
+}
+.qr-modal__close:hover {
+  background: #f1f2f6;
+}
+
+.qr-modal__body {
+  padding: 16px 18px 18px;
+}
+
+.qr-region {
+  width: 100%;
+  min-height: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0e1a30;
+}
+.qr-region video {
+  width: 100% !important;
+  display: block;
+}
+
+.qr-hint {
+  margin: 12px 0 0;
+  font-size: 13px;
+  text-align: center;
+  color: var(--a-muted);
+}
+.qr-msg {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.qr-msg--error {
+  background: #fdecec;
+  color: #b42318;
+}
+.qr-msg--warn {
+  background: #fff4dc;
+  color: #8a5a00;
+}
+
+.qr-manual {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.qr-manual input {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--a-line);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--a-ink);
+}
+.qr-manual input:focus {
+  outline: none;
+  border-color: var(--a-yellow);
+  box-shadow: 0 0 0 3px rgba(251, 184, 38, 0.2);
+}
+.qr-manual button {
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--a-yellow);
+  color: #15120a;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+.qr-manual button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* header button (add to AdminLayout.css, or keep here) */
+.admin-topbar__scan {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--a-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--a-ink);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.admin-topbar__scan:hover {
+  background: #f1f2f6;
+}
+
+@media (max-width: 700px) {
+  .admin-topbar__scan span {
+    display: none;
+  }
+  .admin-topbar__scan {
+    width: 40px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+}

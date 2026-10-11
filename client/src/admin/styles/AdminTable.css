@@ -1,0 +1,143 @@
+/* Shared "toolbar + table + pagination" card used by Vehicles, Bookings, Users and Payments. */
+
+.ad-table-card {
+  background: var(--a-card);
+  border: 1px solid var(--a-line);
+  border-radius: var(--a-radius);
+  box-shadow: var(--a-shadow);
+  padding: 16px 18px 18px;
+}
+
+.ad-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ad-toolbar__spacer {
+  flex: 1;
+}
+
+.ad-table-scroll {
+  overflow-x: auto;
+}
+
+.ad-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12.5px;
+}
+
+.ad-table thead th {
+  padding: 12px 8px;
+  background: #f6f7f9;
+  color: #5b6477;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+}
+.ad-table thead th:first-child {
+  border-radius: 10px 0 0 10px;
+}
+.ad-table thead th:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+.ad-table tbody td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #f0f1f5;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: var(--a-ink);
+}
+.ad-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.ad-table tbody tr:hover td {
+  background: #fcfcfd;
+}
+.ad-table tbody tr.is-selected td {
+  background: #fffbf0;
+}
+
+.ad-table .col-check {
+  width: 36px;
+}
+.ad-table .col-num {
+  width: 44px;
+  color: var(--a-muted);
+}
+.ad-table .col-actions {
+  text-align: right;
+}
+
+.ad-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ad-cell strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--a-ink);
+}
+.ad-strong {
+  font-weight: 600;
+}
+
+.ad-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ad-bulkbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid #f6cf72;
+  border-radius: 10px;
+  background: #fff8e6;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8a5a06;
+}
+
+.ad-table-skeleton td {
+  padding: 18px 12px !important;
+}
+
+@media (max-width: 700px) {
+  .ad-toolbar > * {
+    flex: 1 1 100%;
+  }
+  .ad-toolbar .ad-select select,
+  .ad-toolbar .ad-select {
+    width: 100%;
+  }
+}
+
+/* Actions stay visible while the table scrolls sideways on narrower screens */
+.ad-table .col-actions {
+  position: sticky;
+  right: 0;
+  background: var(--a-card);
+  box-shadow: -8px 0 8px -8px rgba(16, 24, 40, 0.12);
+}
+.ad-table thead th.col-actions {
+  background: #f6f7f9;
+}
+.ad-table tbody tr:hover td.col-actions {
+  background: #fcfcfd;
+}
+.ad-table tbody tr.is-selected td.col-actions {
+  background: #fffbf0;
+}

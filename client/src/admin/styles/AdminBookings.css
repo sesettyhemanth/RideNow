@@ -1,0 +1,25 @@
+/* Bookings relies on the shared table styles; this file only holds page-specific tweaks. */
+
+.ad-table .ad-cell .ad-thumb {
+  background: #f4f5f8;
+}
+
+.ad-table td .ad-sub {
+  margin-top: 1px;
+}
+
+/* keep the 11-column table inside a 1440px viewport without a horizontal scrollbar */
+.ad-table .ad-cell > div,
+.ad-table .ad-cell > strong {
+  min-width: 0;
+}
+.ad-table .ad-cell .ad-sub {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ad-table .ad-cell > strong {
+  white-space: normal;
+  max-width: 130px;
+  line-height: 1.3;
+}

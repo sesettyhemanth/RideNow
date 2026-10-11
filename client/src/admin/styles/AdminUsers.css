@@ -1,0 +1,89 @@
+/* License review modal on the admin Users page */
+
+.ad-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.ad-modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100vh - 32px);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.3);
+  overflow: hidden;
+}
+
+.ad-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ad-modal-head h2 {
+  margin: 0 0 2px;
+  font-size: 1.1rem;
+}
+
+.ad-modal-body {
+  padding: 18px 20px;
+  overflow-y: auto;
+}
+
+.ad-license-meta {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+
+.ad-license-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.ad-license-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  padding: 8px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.ad-license-photo img {
+  display: block;
+  max-width: 100%;
+  max-height: 55vh;
+  border-radius: 6px;
+}
+
+.ad-modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 480px) {
+  .ad-license-meta {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

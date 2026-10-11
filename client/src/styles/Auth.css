@@ -1,0 +1,459 @@
+.auth-page {
+  --auth-bg: #fdfaf3;
+  --auth-yellow: #f7a600;
+  --auth-yellow-soft: #fff0c2;
+  --auth-ink: #040404;
+  --auth-pad-y: 40px;
+
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: var(--auth-pad-y) 24px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow-x: hidden;
+  background: var(--auth-bg);
+}
+
+html:has(.auth-page),
+body:has(.auth-page),
+#root:has(.auth-page) {
+  background: #fdfaf3;
+  margin: 0;
+}
+
+.auth-layout {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 64px;
+  /* both columns share one vertical centre line */
+  align-items: center;
+}
+
+/* ============================ left panel ========================== */
+
+.auth-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.auth-intro-content {
+  flex: 0 0 auto;
+}
+
+.auth-intro .auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.auth-intro .auth-logo-img {
+  display: block;
+  height: 56px;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  object-fit: contain;
+}
+
+.auth-logo-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 1;
+}
+
+.auth-intro .logo-text {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--auth-ink);
+}
+
+.auth-intro .logo-accent {
+  color: var(--auth-yellow);
+}
+
+.auth-intro .auth-tagline {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--text-gray, #5f6f86);
+}
+
+.auth-intro h1 {
+  margin: clamp(24px, 5vh, 44px) 0 14px;
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--auth-ink);
+}
+
+.auth-intro .auth-title-line,
+.auth-intro .highlight {
+  display: block;
+  white-space: nowrap;
+}
+
+.auth-intro .highlight {
+  color: var(--auth-yellow);
+}
+
+.auth-intro .auth-description {
+  max-width: 440px;
+  margin: 0;
+  text-wrap: balance;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-gray, #5f6f86);
+}
+
+.auth-badges {
+  list-style: none;
+  padding: 0;
+  margin: clamp(18px, 3vh, 28px) 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 560px;
+}
+
+.auth-badges li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--auth-ink);
+}
+
+.badge-icon {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--auth-yellow-soft);
+  color: var(--auth-yellow);
+}
+
+.badge-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Hero: spans the full width of the left column (left edge to right edge),
+   scales down on short screens */
+.auth-hero {
+  margin-top: clamp(20px, 4vh, 36px);
+}
+
+.auth-hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: clamp(170px, 32vh, 320px);
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ============================ right card ========================== */
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
+  align-self: center;
+  box-sizing: border-box;
+  padding: 40px 36px;
+  background: #fff;
+  border: 1px solid rgba(4, 4, 4, 0.04);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(6, 6, 6, 0.05);
+}
+
+.auth-card h2 {
+  margin: 0 0 6px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--auth-ink);
+}
+
+.auth-subtitle {
+  margin: 0 0 28px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-gray, #5f6f86);
+}
+
+.google-login-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.google-btn-container {
+  width: 100%;
+  min-height: 44px;
+}
+
+.google-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0 16px;
+  font-size: 12px;
+  color: var(--text-gray, #5f6f86);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+}
+
+.auth-divider span {
+  padding: 0 10px;
+}
+
+/* ============================== form ============================== */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form .form-group {
+  margin: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark, #1f2937);
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 12px;
+  font-size: 14px;
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-group input:focus,
+.password-field:focus-within {
+  outline: none;
+  border-color: var(--auth-yellow);
+  box-shadow: 0 0 0 3px rgba(247, 166, 0, 0.18);
+}
+
+.password-field {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.password-field input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.password-field input:focus {
+  box-shadow: none;
+}
+
+/* hide the browser's native show/clear password buttons (Edge/IE) so only
+   our own toggle is visible */
+.password-field input::-ms-reveal,
+.password-field input::-ms-clear {
+  display: none;
+}
+
+.password-field input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.password-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  padding: 0 12px;
+  border: none;
+  background: none;
+  color: var(--text-gray, #5f6f86);
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  color: var(--auth-ink);
+}
+
+.auth-card .btn-block {
+  min-height: 48px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.terms-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-gray, #5f6f86);
+  cursor: pointer;
+}
+
+.terms-check input {
+  margin-top: 2px;
+}
+
+.error-text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--danger, #dc2626);
+}
+
+.auth-switch {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-gray, #5f6f86);
+}
+
+.auth-switch a {
+  color: var(--black, #040404);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* ============================ responsive ========================== */
+
+/* short laptop screens: tighten a little so the hero keeps some room */
+@media (min-width: 901px) and (max-height: 760px) {
+  .auth-page {
+    --auth-pad-y: 20px;
+  }
+
+  .auth-card {
+    padding: 28px 28px;
+  }
+
+  .auth-intro .auth-logo-img {
+    height: 46px;
+  }
+
+  .auth-intro .auth-description {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .auth-layout {
+    gap: 32px;
+  }
+
+  .auth-badges {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 900px) {
+  .auth-page {
+    --auth-pad-y: 24px;
+    padding-inline: 16px;
+    align-items: flex-start;
+  }
+
+  .auth-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  /* form first on small screens, brand panel below it */
+  .auth-intro {
+    order: 2;
+  }
+
+  .auth-card {
+    order: 1;
+    padding: 24px;
+  }
+
+  .auth-intro .auth-title-line,
+  .auth-intro .highlight {
+    white-space: normal;
+  }
+
+  .auth-hero-img {
+    max-height: none;
+    max-width: 520px;
+    margin-inline: auto;
+    object-position: center bottom;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-badges {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-intro .auth-logo-img {
+    height: 44px;
+  }
+
+  .auth-intro .logo-text {
+    font-size: 26px;
+  }
+}

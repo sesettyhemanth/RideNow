@@ -1,0 +1,126 @@
+/* Global styles and color variables used across every page */
+
+:root {
+  --navy: #0b1b3f;
+  --navy-light: #142a5c;
+  --blue: #2354e6;
+  --blue-dark: #1741b8;
+  --orange: #fdb813;
+  --orange-dark: #e6a300;
+  --bg-light: #f7f9fc;
+  --bg-cream: #fdf6e9;
+  --text-dark: #16213e;
+  --text-gray: #6b7280;
+  --white: #ffffff;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --border: #e5e7eb;
+  --radius: 10px;
+  --shadow: 0 4px 14px rgba(11, 27, 63, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--blue-dark);
+}
+
+.btn-accent {
+  background-color: var(--orange);
+  color: var(--navy);
+}
+
+.btn-accent:hover {
+  background-color: var(--orange-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--blue);
+  color: var(--blue);
+}
+
+.btn-outline:hover {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.section-label {
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}

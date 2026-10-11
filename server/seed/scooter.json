@@ -1,0 +1,40 @@
+[
+  {
+    "id": "scooter-001",
+    "name": "Honda Activa 6G",
+    "type": "scooter",
+    "image": "honda-activa-6g.jpg",
+    "pricePerDay": 249,
+    "rating": 4.7,
+    "trips": 150,
+    "cc": "110cc",
+    "mileage": "60 kmpl",
+    "gears": "Automatic",
+    "seats": 2,
+    "fuel": "Petrol",
+    "transmission": "Automatic",
+    "location": "Visakhapatnam, Andhra Pradesh",
+    "about": "The Honda Activa 6G is India's most trusted scooter, offering a smooth automatic ride with great mileage for everyday city trips.",
+    "features": ["Fuel Efficient", "Well Maintained", "Helmet Included", "Insurance", "24/7 Support"],
+    "status": "available"
+  },
+  {
+    "id": "scooter-002",
+    "name": "TVS Jupiter 125",
+    "type": "scooter",
+    "image": "tvs-jupiter-125.jpg",
+    "pricePerDay": 269,
+    "rating": 4.6,
+    "trips": 87,
+    "cc": "125cc",
+    "mileage": "55 kmpl",
+    "gears": "Automatic",
+    "seats": 2,
+    "fuel": "Petrol",
+    "transmission": "Automatic",
+    "location": "Visakhapatnam, Andhra Pradesh",
+    "about": "The TVS Jupiter 125 delivers a comfortable, spacious ride with strong mileage, great for both city commutes and longer trips.",
+    "features": ["Fuel Efficient", "Well Maintained", "Helmet Included", "Insurance", "24/7 Support"],
+    "status": "available"
+  }
+]

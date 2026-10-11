@@ -1,0 +1,85 @@
+/* Used by the Documentation step (nested inside the booking page's .container) */
+
+.license-page .license-subtitle {
+  color: var(--text-gray);
+  margin: 0 0 24px;
+  max-width: 560px;
+}
+
+.license-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.license-status-card,
+.license-form {
+  padding: 22px;
+}
+
+.license-status-card h3,
+.license-form h3 {
+  margin: 0 0 14px;
+  color: var(--navy);
+}
+
+.status-badge {
+  display: inline-block;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.license-number-shown {
+  font-size: 14px;
+  color: var(--text-dark);
+  margin: 0 0 12px;
+}
+
+.license-preview {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.license-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.license-form .form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* :not(.error-text) so server errors keep their red colour */
+.license-form p:not(.error-text) {
+  color: var(--text-gray);
+  font-size: 14px;
+}
+
+.license-form .error-text {
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.secure-image-loading {
+  font-size: 12px;
+  color: var(--text-gray);
+}
+
+@media (max-width: 800px) {
+  .license-layout {
+    grid-template-columns: 1fr;
+  }
+}

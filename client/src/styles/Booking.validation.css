@@ -1,0 +1,44 @@
+/* Imported by BookingDetailsStep, PaymentStep and DocumentationStep - validation states */
+
+.form-group input.has-error,
+.form-group select.has-error {
+  border-color: #ef4444;
+  background: #fff7f7;
+}
+
+.form-group input.has-error:focus,
+.form-group select.has-error:focus {
+  outline: 2px solid rgba(239, 68, 68, 0.35);
+  outline-offset: 1px;
+}
+
+.field-error {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: #dc2626;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.form-alert {
+  margin-bottom: 18px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  color: #991b1b;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+}
+
+.summary-hint {
+  margin: 10px 0 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+}

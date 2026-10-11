@@ -1,0 +1,638 @@
+/* Booking Details + Payment steps, and the yellow button theme for the whole booking flow */
+
+.bk-grid,
+.bk-pay {
+  --bk-navy: #1b2a5c;
+  --bk-ink: #1f2937;
+  --bk-muted: #6b7280;
+  --bk-yellow: #fbbf24;
+  --bk-yellow-dark: #f59e0b;
+  --bk-yellow-soft: #fff7dd;
+  --bk-border: #f6e3a6;
+  --bk-line: #eef0f5;
+  --bk-green: #16a34a;
+}
+.bk-pay {
+  --bk-navy: #1b2a5c;
+  --bk-ink: #1f2937;
+  --bk-muted: #6b7280;
+  --bk-yellow: #fbbf24;
+  --bk-yellow-dark: #f59e0b;
+  --bk-yellow-soft: #fff7dd;
+  --bk-border: #f6e3a6;
+  --bk-line: #eef0f5;
+  --bk-green: #16a34a;
+}
+
+/* ---------- layout ---------- */
+.bk-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  align-items: start;
+}
+.bk-grid--pay {
+  grid-template-columns: minmax(0, 1fr) 360px;
+}
+.bk-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+.bk-sticky {
+  position: sticky;
+  top: 90px;
+}
+
+/* ---------- cards ---------- */
+.bk-card {
+  padding: 22px 24px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--bk-border);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(245, 179, 1, 0.1);
+}
+.bk-card-title {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--bk-navy);
+}
+.bk-card-title--icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bk-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  color: #b45309;
+  background: #fde68a;
+}
+.bk-ico {
+  flex: 0 0 auto;
+}
+
+/* ---------- vehicle block ---------- */
+.bk-vehicle {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.bk-vehicle h3,
+.bk-vehicle h4 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+  color: var(--bk-navy);
+}
+.bk-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 110px;
+  height: 80px;
+}
+.bk-thumb--lg {
+  width: 150px;
+  height: 110px;
+  background: radial-gradient(circle at 60% 45%, #fff0b8 0, #fff7dd 55%, transparent 70%);
+}
+.bk-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.bk-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #166534;
+  background: #dcfce7;
+  border-radius: 6px;
+}
+.bk-price-day {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: var(--bk-muted);
+}
+.bk-price-day strong {
+  font-size: 1.25rem;
+  color: var(--bk-navy);
+}
+
+/* ---------- form controls ---------- */
+.bk-field {
+  margin-top: 14px;
+}
+.bk-label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--bk-navy);
+}
+.bk-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: 12px;
+}
+.bk-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  color: var(--bk-navy);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+.bk-input:focus-within {
+  border-color: var(--bk-yellow-dark);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.25);
+}
+.bk-input.has-error {
+  border-color: #ef4444;
+  background: #fff7f7;
+}
+.bk-input select,
+.bk-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 0;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--bk-ink);
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+.bk-plain {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 13px;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--bk-ink);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+.bk-plain:focus {
+  outline: none;
+  border-color: var(--bk-yellow-dark);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.25);
+}
+.bk-plain.has-error {
+  border-color: #ef4444;
+  background: #fff7f7;
+}
+
+/* ---------- add-ons ---------- */
+.bk-addons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.bk-addon {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #eef0f5;
+  border-radius: 12px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.bk-addon:hover,
+.bk-addon.is-checked {
+  background: var(--bk-yellow-soft);
+  border-color: var(--bk-yellow);
+}
+.bk-addon input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--bk-yellow-dark);
+}
+.bk-addon-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 1.1rem;
+  background: #fff3cd;
+  border-radius: 50%;
+}
+.bk-addon-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--bk-ink);
+}
+.bk-addon-price {
+  font-weight: 700;
+  color: var(--bk-green);
+}
+
+/* ---------- price lines / totals ---------- */
+.bk-lines {
+  margin: 0 0 14px;
+}
+.bk-lines > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  font-size: 0.92rem;
+  color: var(--bk-ink);
+  border-bottom: 1px solid var(--bk-line);
+}
+.bk-lines dd,
+.bk-summary-rows dd {
+  margin: 0;
+  font-weight: 700;
+}
+.bk-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 18px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--bk-navy);
+}
+.bk-total strong {
+  font-size: 1.5rem;
+  color: var(--bk-green);
+}
+.bk-total--boxed {
+  padding: 14px 16px;
+  margin: 14px 0 16px;
+  background: #fff3cd;
+  border-radius: 12px;
+}
+.bk-total--boxed strong {
+  font-size: 1.35rem;
+}
+
+/* ---------- action buttons (yellow) ---------- */
+.bk-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 18px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.15s, transform 0.05s;
+}
+.bk-btn + .bk-btn {
+  margin-top: 10px;
+}
+.bk-btn:active {
+  transform: translateY(1px);
+}
+.bk-btn--primary {
+  color: #1f2937;
+  background: linear-gradient(180deg, #fcc934, #fbbf24);
+  border: 1px solid #f5b301;
+  box-shadow: 0 4px 12px rgba(245, 179, 1, 0.35);
+}
+.bk-btn--primary:hover {
+  background: #f59e0b;
+}
+.bk-btn--outline {
+  color: #92400e;
+  background: #fff;
+  border: 1px solid var(--bk-yellow-dark);
+}
+.bk-btn--outline:hover {
+  background: #fffbeb;
+}
+
+/* ---------- payment page ---------- */
+.bk-pay-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.bk-pay-head-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 60px;
+  height: 60px;
+  color: #b45309;
+  background: #fde68a;
+  border-radius: 50%;
+}
+.bk-pay-head h2 {
+  margin: 0;
+  font-size: 1.7rem;
+  color: var(--bk-navy);
+}
+.bk-pay-head p {
+  margin: 4px 0 0;
+  color: var(--bk-muted);
+  font-size: 0.92rem;
+}
+
+.bk-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bk-method {
+  background: #fff;
+  border: 1px solid #eef0f5;
+  border-radius: 12px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.bk-method.is-selected {
+  background: var(--bk-yellow-soft);
+  border-color: var(--bk-yellow);
+}
+.bk-method-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+.bk-method-row input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.bk-radio {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  background: #fff;
+}
+.bk-method.is-selected .bk-radio {
+  border-color: var(--bk-yellow-dark);
+  background: radial-gradient(circle, var(--bk-yellow-dark) 0 45%, #fff 50%);
+}
+.bk-method-row input:focus-visible + .bk-radio {
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.4);
+}
+.bk-method-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  color: var(--bk-navy);
+  background: #fff;
+  border: 1px solid #eef0f5;
+  border-radius: 50%;
+}
+.bk-method-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.bk-method-text strong {
+  color: var(--bk-navy);
+}
+.bk-method-text small {
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: var(--bk-muted);
+}
+.bk-brands {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bk-brand {
+  font-size: 0.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+  color: var(--bk-navy);
+}
+.bk-brand--visa {
+  font-style: italic;
+  letter-spacing: 1px;
+  color: #1a1f71;
+}
+.bk-brand--mastercard {
+  color: #eb001b;
+}
+.bk-brand--rupay {
+  color: #097a44;
+}
+.bk-brand--paytm {
+  color: #00b9f5;
+}
+.bk-brand--phonepe {
+  color: #5f259f;
+}
+.bk-brand--gpay {
+  color: #4285f4;
+}
+.bk-brand--amazonpay {
+  color: #ff9900;
+}
+.bk-method-body {
+  padding: 0 16px 16px 48px;
+}
+.bk-card-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.bk-span-2 {
+  grid-column: 1 / -1;
+}
+
+.bk-secure {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: #fff3cd;
+  border-radius: 12px;
+}
+.bk-secure-icon {
+  display: inline-flex;
+  color: #d97706;
+}
+.bk-secure strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--bk-navy);
+}
+.bk-secure small {
+  font-size: 0.78rem;
+  color: var(--bk-muted);
+}
+
+/* booking summary card */
+.bk-summary-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bk-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 0;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #b45309;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.bk-summary-rows {
+  margin: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--bk-line);
+  border-bottom: 1px solid var(--bk-line);
+}
+.bk-summary-rows > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 0.85rem;
+}
+.bk-summary-rows dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bk-muted);
+}
+.bk-summary-addons {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--bk-line);
+}
+.bk-summary-addons-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+.bk-summary-addons-head span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bk-muted);
+}
+.bk-summary-addons small {
+  display: block;
+  margin: 4px 0 0 22px;
+  font-size: 0.78rem;
+  color: var(--bk-muted);
+}
+.bk-summary-estimate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  font-size: 0.85rem;
+}
+.bk-summary-estimate span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bk-muted);
+}
+.bk-summary-estimate strong {
+  font-size: 1.05rem;
+  color: var(--bk-navy);
+}
+
+/* ---------- yellow theme for the existing .btn buttons in the booking flow ---------- */
+.booking-page .btn.btn-primary,
+.license-page .btn.btn-primary,
+.confirmation-page .btn.btn-primary {
+  color: #1f2937;
+  background: #fbbf24;
+  border: 1px solid #f5b301;
+  font-weight: 700;
+}
+.booking-page .btn.btn-primary:hover:not(:disabled),
+.license-page .btn.btn-primary:hover:not(:disabled),
+.confirmation-page .btn.btn-primary:hover:not(:disabled) {
+  background: #f59e0b;
+  border-color: #f59e0b;
+}
+.booking-page .btn.btn-outline,
+.license-page .btn.btn-outline,
+.confirmation-page .btn.btn-outline {
+  color: #92400e;
+  background: #fff;
+  border: 1px solid #f59e0b;
+  font-weight: 600;
+}
+.booking-page .btn.btn-outline:hover:not(:disabled),
+.license-page .btn.btn-outline:hover:not(:disabled),
+.confirmation-page .btn.btn-outline:hover:not(:disabled) {
+  background: #fffbeb;
+}
+.booking-page .btn:disabled,
+.license-page .btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.confirmation-total strong {
+  color: #b45309;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 920px) {
+  .bk-grid,
+  .bk-grid--pay {
+    grid-template-columns: 1fr;
+  }
+  .bk-sticky {
+    position: static;
+  }
+}
+@media (max-width: 560px) {
+  .bk-card {
+    padding: 18px 16px;
+  }
+  .bk-vehicle {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .bk-row,
+  .bk-card-fields {
+    grid-template-columns: 1fr;
+  }
+  .bk-brands {
+    display: none;
+  }
+  .bk-method-body {
+    padding-left: 16px;
+  }
+}

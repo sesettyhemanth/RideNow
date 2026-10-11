@@ -1,0 +1,144 @@
+.verify-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background: var(--a-bg);
+}
+
+.verify-card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  padding: 30px 32px 32px;
+  text-align: center;
+}
+
+.verify-back {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--a-muted);
+}
+.verify-back:hover {
+  color: var(--a-ink);
+}
+
+.verify-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 14px 0 12px;
+  border-radius: 50%;
+  background: var(--a-yellow-soft);
+  color: var(--a-yellow-600);
+}
+.verify-icon--error {
+  background: #fde6e6;
+  color: #d12c2c;
+}
+
+.verify-card h1 {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--a-ink);
+}
+
+.verify-code {
+  margin-top: 2px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--a-muted);
+}
+
+.verify-status {
+  margin: 14px 0 18px;
+}
+
+.verify-error {
+  margin: 8px 0 20px;
+  color: #b42323;
+  font-size: 13.5px;
+}
+
+.verify-loading {
+  color: var(--a-muted);
+}
+
+.verify-rows {
+  text-align: left;
+}
+
+.verify-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid #f0f1f5;
+  font-size: 13.5px;
+}
+.verify-row span {
+  color: var(--a-muted);
+}
+.verify-row strong {
+  font-weight: 600;
+  color: var(--a-ink);
+  text-align: right;
+  word-break: break-word;
+}
+
+.verify-total {
+  border-bottom: 0;
+  padding-top: 14px;
+  font-size: 16px;
+}
+.verify-total strong {
+  font-size: 19px;
+  color: var(--a-yellow-600);
+}
+
+.verify-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+.verify-actions .ad-btn {
+  flex: 1;
+}
+
+/* final-state button shown after a booking is completed / cancelled */
+.verify-done,
+.verify-done:disabled {
+  opacity: 1;
+  cursor: default;
+  font-weight: 600;
+}
+.verify-done--completed,
+.verify-done--completed:disabled {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #15803d;
+}
+.verify-done--cancelled,
+.verify-done--cancelled:disabled {
+  background: #fde6e6;
+  border-color: #f5b5b5;
+  color: #b42323;
+}
+
+@media (max-width: 480px) {
+  .verify-card {
+    padding: 28px 20px 24px;
+  }
+  .verify-actions {
+    flex-direction: column;
+  }
+}
