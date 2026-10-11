@@ -1,14 +1,33 @@
-// Handles the connection to MongoDB. Called once from server.js on startup.
+
 const mongoose = require('mongoose');
 
 async function connectDB() {
+  const mongoURI = process.env.MONGODB_URI;
+
+  if (!mongoURI) {
+    throw new Error(
+      'MONGODB_URI is missing from the environment variables'
+    );
+  }
+
+  if (
+    mongoURI.includes('localhost') ||
+    mongoURI.includes('127.0.0.1')
+  ) {
+    throw new Error(
+      'MONGODB_URI points to localhost. Use your MongoDB Atlas connection string in Render.'
+    );
+  }
+
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI);
-    console.log(`MongoDB connected: ${conn.connection.host}/${conn.connection.name}`);
+    const conn = await mongoose.connect(mongoURI);
+
+    console.log(
+      `MongoDB connected: ${conn.connection.host}/${conn.connection.name}`
+    );
   } catch (err) {
     console.error('MongoDB connection failed:', err.message);
-    // there's no point running the API without a database, so bail out
-    process.exit(1);
+    throw err;
   }
 }
 
