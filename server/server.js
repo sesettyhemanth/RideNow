@@ -1,5 +1,4 @@
 
-
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -17,11 +16,11 @@ const userRoutes = require('./routes/users');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// middleware
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// routes
+// Routes
 app.use('/api/vehicles', vehicleRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
@@ -29,23 +28,38 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/licenses', licenseRoutes);
 app.use('/api/users', userRoutes);
 
-// basic health check
+// Health check
 app.get('/', (req, res) => {
-  res.send('RideNow API is running');
+  res.status(200).send('RideNow API is running');
 });
 
-// 404 for unknown api routes
+// 404 for unknown API routes
 app.use('/api', (req, res) => {
-  res.status(404).json({ success: false, message: 'Route not found' });
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
+  });
 });
 
+// Start server
 async function startServer() {
-  await connectDB();
-  await seedVehicles();
+  try {
+    console.log('Starting RideNow backend...');
 
-  app.listen(PORT, () => {
-    console.log(`RideNow server running on port ${PORT}`);
-  });
+    await connectDB();
+    console.log('MongoDB connection completed');
+
+    await seedVehicles();
+    console.log('Vehicle seeding completed');
+
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`RideNow server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error('Failed to start RideNow server:');
+    console.error(error);
+    process.exit(1);
+  }
 }
 
 startServer();
