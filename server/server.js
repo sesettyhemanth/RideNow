@@ -1,10 +1,9 @@
-
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
 const connectDB = require('./config/db');
-const seedVehicles = require('./utils/seedVehicles');
+// const seedVehicles = require('./utils/seedVehicles'); // Commented out to prevent restart loops
 
 const vehicleRoutes = require('./routes/vehicles');
 const authRoutes = require('./routes/auth');
@@ -49,8 +48,9 @@ async function startServer() {
     await connectDB();
     console.log('MongoDB connection completed');
 
-    await seedVehicles();
-    console.log('Vehicle seeding completed');
+    // Prevent auto-seeding on every server boot to stop the restart loop
+    // await seedVehicles();
+    // console.log('Vehicle seeding completed');
 
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`RideNow server running on port ${PORT}`);
