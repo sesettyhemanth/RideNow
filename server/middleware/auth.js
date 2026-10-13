@@ -1,7 +1,7 @@
 // SAVE THIS AS: server/middleware/auth.js  (replace the file I gave you before)
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const Admin = require('../models/admin');
+const Admin = require('../models/Admin');
 
 // Admin tokens load the Admin account, normal tokens load the User account.
 // req.role is 'admin' or 'user'.
