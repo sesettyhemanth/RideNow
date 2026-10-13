@@ -1,11 +1,15 @@
-
+// SAVE THIS AS: server/routes/users.js  (replace the old file)
 const express = require('express');
 const router = express.Router();
 
 const User = require('../models/User');
 const imageUpload = require('../utils/imageUpload');
 const { verifyToken, requireAdmin } = require('../middleware/auth');
-const toPublicUser = require('../utils/toPublicUser');
+const basePublicUser = require('../utils/toPublicUser');
+const withLicenseDetails = require('../utils/withLicenseDetails');
+
+// the public user plus the licence details (issue / validity date, address)
+const toPublicUser = (user) => withLicenseDetails(user, basePublicUser(user));
 
 router.put('/me', verifyToken, async (req, res) => {
   try {
@@ -74,84 +78,53 @@ router.put('/me', verifyToken, async (req, res) => {
   }
 });
 
-router.put(
-  '/me/avatar',
-  verifyToken,
-  imageUpload.single('avatar'),
-  async (req, res) => {
-    try {
-      if (!req.file) {
-        return res.status(400).json({
-          success: false,
-          message: 'No image file was uploaded'
-        });
-      }
-
-      const userId = req.user.id || req.user._id;
-
-      if (!userId) {
-        return res.status(401).json({
-          success: false,
-          message: 'User ID not found in token'
-        });
-      }
-
-      const user = await User.findByIdAndUpdate(
-        userId,
-        {
-          profileImage: {
-            data: req.file.buffer,
-            contentType: req.file.mimetype
-          }
-        },
-        { new: true }
-      );
-
-      if (!user) {
-        return res.status(404).json({
-          success: false,
-          message: 'User not found'
-        });
-      }
-
-      res.json({
-        success: true,
-        message: 'Profile photo updated',
-        data: {
-          hasProfileImage: Boolean(user.profileImage)
-        }
-      });
-    } catch (error) {
-      console.error('Upload profile photo error:', error);
-
-      res.status(500).json({
-        success: false,
-        message: 'Failed to upload profile photo'
-      });
+router.put('/me/avatar', verifyToken, imageUpload.single('avatar'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No image file was uploaded' });
     }
+
+    const userId = req.user.id || req.user._id;
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      {
+        profileImage: {
+          data: req.file.buffer,
+          contentType: req.file.mimetype,
+        },
+      },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.json({
+      success: true,
+      message: 'Profile photo updated',
+      data: { hasProfileImage: Boolean(user.profileImage) },
+    });
+  } catch (error) {
+    console.error('Upload profile photo error:', error);
+    res.status(500).json({ success: false, message: 'Failed to upload profile photo' });
   }
-);
+});
 
 router.get('/:id/avatar', async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select('profileImage');
 
     if (!user?.profileImage?.data) {
-      return res.status(404).json({
-        success: false,
-        message: 'No profile photo set'
-      });
+      return res.status(404).json({ success: false, message: 'No profile photo set' });
     }
 
     res.set('Content-Type', user.profileImage.contentType);
     res.send(user.profileImage.data);
   } catch (error) {
     console.error('Get profile photo error:', error);
-
-    res.status(500).json({
-      success: false,
-      message: 'Failed to get profile photo'
-    });
+    res.status(500).json({ success: false, message: 'Failed to get profile photo' });
   }
 });
 
@@ -159,7 +132,7 @@ function sendLicensePhoto(field) {
   return async (req, res) => {
     try {
       const isOwner = String(req.user.id) === req.params.id;
-      const isAdmin = req.user.role === 'admin';
+      const isAdmin = req.role === 'admin';
 
       if (!isOwner && !isAdmin) {
         return res.status(403).json({ success: false, message: 'Not allowed to view this' });
@@ -187,136 +160,68 @@ router.get('/:id/license-photo/back', verifyToken, sendLicensePhoto('licenseBack
 
 router.get('/me/favorites', verifyToken, async (req, res) => {
   try {
-    // Support both possible token formats
     const userId = req.user.id || req.user._id;
-
-    if (!userId) {
-      return res.status(401).json({
-        success: false,
-        message: 'User ID not found in token'
-      });
-    }
 
     const user = await User.findById(userId).populate('favorites');
 
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'User not found'
-      });
+      return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    res.json({
-      success: true,
-      data: user.favorites || []
-    });
+    res.json({ success: true, data: user.favorites || [] });
   } catch (error) {
     console.error('Get favorites error:', error);
-
-    res.status(500).json({
-      success: false,
-      message: 'Failed to get favorites'
-    });
+    res.status(500).json({ success: false, message: 'Failed to get favorites' });
   }
 });
 
-router.put(
-  '/me/favorites/:vehicleId',
-  verifyToken,
-  async (req, res) => {
-    try {
-      const userId = req.user.id || req.user._id;
+router.put('/me/favorites/:vehicleId', verifyToken, async (req, res) => {
+  try {
+    const userId = req.user.id || req.user._id;
 
-      if (!userId) {
-        return res.status(401).json({
-          success: false,
-          message: 'User ID not found in token'
-        });
-      }
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $addToSet: { favorites: req.params.vehicleId } },
+      { new: true }
+    );
 
-      const user = await User.findByIdAndUpdate(
-        userId,
-        {
-          $addToSet: {
-            favorites: req.params.vehicleId
-          }
-        },
-        { new: true }
-      );
-
-      if (!user) {
-        return res.status(404).json({
-          success: false,
-          message: 'User not found'
-        });
-      }
-
-      res.json({
-        success: true,
-        message: 'Added to favorites'
-      });
-    } catch (error) {
-      console.error('Add favorite error:', error);
-
-      res.status(500).json({
-        success: false,
-        message: 'Failed to add favorite'
-      });
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
     }
+
+    res.json({ success: true, message: 'Added to favorites' });
+  } catch (error) {
+    console.error('Add favorite error:', error);
+    res.status(500).json({ success: false, message: 'Failed to add favorite' });
   }
-);
+});
 
-router.delete(
-  '/me/favorites/:vehicleId',
-  verifyToken,
-  async (req, res) => {
-    try {
-      const userId = req.user.id || req.user._id;
+router.delete('/me/favorites/:vehicleId', verifyToken, async (req, res) => {
+  try {
+    const userId = req.user.id || req.user._id;
 
-      if (!userId) {
-        return res.status(401).json({
-          success: false,
-          message: 'User ID not found in token'
-        });
-      }
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { favorites: req.params.vehicleId } },
+      { new: true }
+    );
 
-      const user = await User.findByIdAndUpdate(
-        userId,
-        {
-          $pull: {
-            favorites: req.params.vehicleId
-          }
-        },
-        { new: true }
-      );
-
-      if (!user) {
-        return res.status(404).json({
-          success: false,
-          message: 'User not found'
-        });
-      }
-
-      res.json({
-        success: true,
-        message: 'Removed from favorites'
-      });
-    } catch (error) {
-      console.error('Remove favorite error:', error);
-
-      res.status(500).json({
-        success: false,
-        message: 'Failed to remove favorite'
-      });
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
     }
+
+    res.json({ success: true, message: 'Removed from favorites' });
+  } catch (error) {
+    console.error('Remove favorite error:', error);
+    res.status(500).json({ success: false, message: 'Failed to remove favorite' });
   }
-);
+});
 
 router.get('/', verifyToken, requireAdmin, async (req, res) => {
   try {
     const users = await User.find()
       .select(
-        'name email phone licenseStatus licenseNumber licenseFullName licenseDob licenseMobile licenseClasses licenseSubmittedAt licenseImage.contentType licenseBackImage.contentType googleId createdAt'
+        'name email phone licenseStatus licenseNumber licenseFullName licenseDob licenseMobile licenseClasses licenseIssueDate licenseValidUntil licenseAddress licenseSubmittedAt licenseImage.contentType licenseBackImage.contentType googleId createdAt'
       )
       .sort({ createdAt: -1 });
 
@@ -331,24 +236,20 @@ router.get('/', verifyToken, requireAdmin, async (req, res) => {
       licenseDob: user.licenseDob,
       licenseMobile: user.licenseMobile,
       licenseClasses: user.licenseClasses || [],
+      licenseIssueDate: user.licenseIssueDate || null,
+      licenseValidUntil: user.licenseValidUntil || null,
+      licenseAddress: user.licenseAddress || '',
       licenseSubmittedAt: user.licenseSubmittedAt,
       hasLicenseImage: Boolean(user.licenseImage?.contentType),
       hasLicenseBackImage: Boolean(user.licenseBackImage?.contentType),
       isGoogleAccount: Boolean(user.googleId),
-      createdAt: user.createdAt
+      createdAt: user.createdAt,
     }));
 
-    res.json({
-      success: true,
-      data: shaped
-    });
+    res.json({ success: true, data: shaped });
   } catch (error) {
     console.error('Get users error:', error);
-
-    res.status(500).json({
-      success: false,
-      message: 'Failed to get users'
-    });
+    res.status(500).json({ success: false, message: 'Failed to get users' });
   }
 });
 
@@ -357,25 +258,14 @@ router.delete('/:id', verifyToken, requireAdmin, async (req, res) => {
     const user = await User.findByIdAndDelete(req.params.id);
 
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'User not found'
-      });
+      return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    res.json({
-      success: true,
-      message: 'User account deleted'
-    });
+    res.json({ success: true, message: 'User account deleted' });
   } catch (error) {
     console.error('Delete user error:', error);
-
-    res.status(500).json({
-      success: false,
-      message: 'Failed to delete user'
-    });
+    res.status(500).json({ success: false, message: 'Failed to delete user' });
   }
 });
-
 
 module.exports = router;
