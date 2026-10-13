@@ -7,12 +7,11 @@ import LicenseSection from '../components/LicenseSection.jsx';
 import { vehicleImageUrl, vehicleImageCount } from '../utils/vehicleImage.js';
 import '../styles/Profile.css';
 import '../styles/ProfileBookingView.css';
-/* same images as Home.jsx - adjust the path if your files are elsewhere */
+
 import heroImage from '../assets/hero.png';
 import bikeImg from '../assets/bike.png';
 import scooterImg from '../assets/scooter.png';
 import carImg from '../assets/car.png';
-
 
 const NAV = [
   { key: 'profile', label: 'Profile Detail', icon: 'user', title: 'Profile Detail', subtitle: 'Manage your personal information and account details.' },
@@ -32,7 +31,6 @@ const licenseStatusLabel = {
 };
 
 const typeImage = { bike: bikeImg, scooter: scooterImg, car: carImg };
-
 
 const ICONS = {
   user: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
@@ -78,7 +76,6 @@ function Icon({ name, size = 18 }) {
   );
 }
 
-
 function Profile() {
   const { user, updateUser, logoutUser } = useApp();
   const navigate = useNavigate();
@@ -86,21 +83,20 @@ function Profile() {
   const [activeTab, setActiveTab] = useState('profile');
   const [bookings, setBookings] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [vehicles, setVehicles] = useState([]); // used to show each booking's real vehicle photo
+  const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [avatarUploading, setAvatarUploading] = useState(false);
 
   const [bookingFilter, setBookingFilter] = useState('all');
-  const [viewing, setViewing] = useState(null); // booking open in the View popup
+  const [viewing, setViewing] = useState(null);
   const [wishlistFilter, setWishlistFilter] = useState('all');
 
-  // settings (local UI state - wire to your API where marked)
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({ name: '', phone: '', dateOfBirth: '', gender: '', location: '' });
   const [saving, setSaving] = useState(false);
   const [saveMsg, setSaveMsg] = useState('');
-  const [prefs, setPrefs] = useState({ vehicleType: 'car', location: 'Bengaluru, Karnataka', language: 'English' });
+  const [prefs, setPrefs] = useState({ vehicleType: 'car', location: 'Visakhapatnam, Andhra Pradesh', language: 'English' });
   const [notify, setNotify] = useState({ booking: true, offers: true, arrivals: true, promos: false });
   const [theme, setTheme] = useState('light');
   const [twoFactor, setTwoFactor] = useState(false);
@@ -129,26 +125,42 @@ function Profile() {
       setLoading(true);
       setError('');
 
-      const [meRes, bookingsRes, favoritesRes] = await Promise.all([
-        api.get('/auth/me'),
-        api.get('/bookings/mine'),
-        api.get('/users/me/favorites'),
-      ]);
+      let meData = null;
+      let bookingsData = [];
+      let favoritesData = [];
 
-      // only overwrite the user when the server really returned one
-      const me = meRes.data.data;
-      if (me) updateUser({ ...user, ...me });
+      try {
+        const meRes = await api.get('/auth/me');
+        meData = meRes.data.data;
+      } catch (err) {
+        console.error("Failed to load /auth/me:", err);
+      }
 
-      setBookings(bookingsRes.data.data || []);
+      try {
+        const bookingsRes = await api.get('/bookings/mine');
+        bookingsData = bookingsRes.data.data || [];
+      } catch (err) {
+        console.error("Failed to load bookings:", err);
+      }
+
+      try {
+        const favoritesRes = await api.get('/users/me/favorites');
+        favoritesData = favoritesRes.data.data || [];
+      } catch (err) {
+        console.error("Failed to load favorites:", err);
+      }
+
+      if (meData) updateUser({ ...user, ...meData });
+      setBookings(bookingsData);
+      setFavorites(favoritesData);
 
       try {
         const vehiclesRes = await api.get('/vehicles');
         const list = vehiclesRes.data?.data ?? vehiclesRes.data;
         setVehicles(Array.isArray(list) ? list : list?.vehicles || []);
       } catch (e) {
-        setVehicles([]); // bookings still show, just with the fallback image
+        setVehicles([]);
       }
-      setFavorites(favoritesRes.data.data || []);
     } catch (err) {
       setError('Could not load your account data. Please try again.');
     } finally {
@@ -165,7 +177,6 @@ function Profile() {
 
     try {
       setAvatarUploading(true);
-      // no manual Content-Type: the browser must generate the multipart boundary
       await api.put('/users/me/avatar', formData);
       updateUser({ ...user, hasProfileImage: true });
     } catch (err) {
@@ -200,7 +211,6 @@ function Profile() {
     try {
       setSaving(true);
       setSaveMsg('');
-      // NOTE: change this URL if your backend uses a different profile-update route
       const res = await api.put('/users/me', form);
       updateUser({ ...user, ...form, ...(res.data?.data || {}) });
       setEditing(false);
@@ -238,7 +248,6 @@ function Profile() {
   const shownBookings =
     bookingFilter === 'upcoming' ? upcomingBookings : bookingFilter === 'completed' ? completedBookings : bookings;
 
-  // find the full vehicle record for a booking so we can reuse the vehicle's own photo
   const findVehicle = (booking) => {
     if (booking.vehicle && typeof booking.vehicle === 'object') return booking.vehicle;
     const id = String(booking.vehicleId || booking.vehicle || '');
@@ -271,7 +280,6 @@ function Profile() {
       {error && <p className="error-text">{error}</p>}
 
       <div className="pf-shell">
-        {/* ---------------- sidebar ---------------- */}
         <aside className="pf-sidebar">
           <div className="pf-user">
             <div className="pf-avatar">{avatar}</div>
@@ -301,7 +309,6 @@ function Profile() {
           </nav>
         </aside>
 
-        {/* ---------------- main ---------------- */}
         <div className="pf-main">
           <header className="pf-banner">
             <div className="pf-banner-icon">
@@ -317,7 +324,6 @@ function Profile() {
           <div className="pf-panel">
             {loading && <p className="pf-muted">Loading...</p>}
 
-            {/* ---- Profile Detail ---- */}
             {!loading && activeTab === 'profile' && (
               <div>
                 <div className="pf-profile-head">
@@ -385,14 +391,13 @@ function Profile() {
                   <InfoCard
                     icon="shield"
                     label="Sign-in Method"
-                    value={user.isGoogleAccount ? 'Google' : 'Email & Password'}
+                    value={user.isGoogleAccount || user.googleId ? 'Google' : 'Email & Password'}
                   />
                   <InfoCard icon="file" label="Driving License" value={licenseStatusLabel[licenseStatus]} />
                 </div>
               </div>
             )}
 
-            {/* ---- Bookings ---- */}
             {!loading && activeTab === 'bookings' && (
               <div>
                 <div className="pf-filters">
@@ -418,14 +423,12 @@ function Profile() {
               </div>
             )}
 
-            {/* ---- Documentation ---- */}
             {!loading && activeTab === 'documents' && (
               <div className="pf-doc">
                 <LicenseSection />
               </div>
             )}
 
-            {/* ---- History ---- */}
             {!loading && activeTab === 'history' && (
               <div>
                 {pastBookings.length === 0 && (
@@ -437,7 +440,6 @@ function Profile() {
               </div>
             )}
 
-            {/* ---- Settings ---- */}
             {!loading && activeTab === 'settings' && (
               <div className="pf-settings">
                 <SettingsCard icon="settings" title="Preferences" sub="Customize your ride experience">
@@ -452,9 +454,9 @@ function Profile() {
                   <label className="pf-field">
                     <span>Default Pickup Location</span>
                     <select value={prefs.location} onChange={(e) => setPrefs({ ...prefs, location: e.target.value })}>
+                      <option>Visakhapatnam, Andhra Pradesh</option>
                       <option>Bengaluru, Karnataka</option>
                       <option>Mysuru, Karnataka</option>
-                      <option>Visakhapatnam, Andhra Pradesh</option>
                     </select>
                   </label>
                   <label className="pf-field">
@@ -477,10 +479,6 @@ function Profile() {
                     <span>Two-Factor Authentication</span>
                     <Toggle checked={twoFactor} onChange={setTwoFactor} label="Two-factor authentication" />
                   </div>
-                  <button className="pf-link-row">
-                    <span>Login Activity</span>
-                    <Icon name="chevron" size={14} />
-                  </button>
                 </SettingsCard>
 
                 <SettingsCard icon="bell" title="Notifications" sub="Choose what you want to be notified about">
@@ -511,25 +509,9 @@ function Profile() {
                     <Icon name="moon" /> <span>Dark Mode</span> <i className="pf-radio" />
                   </button>
                 </SettingsCard>
-
-                <SettingsCard icon="settings" title="Quick Actions" sub="Manage your account quickly">
-                  <button className="pf-link-row">
-                    <span><Icon name="download" size={16} /> Download My Data</span>
-                    <Icon name="chevron" size={14} />
-                  </button>
-                  <button className="pf-link-row">
-                    <span><Icon name="trash" size={16} /> Delete Account</span>
-                    <Icon name="chevron" size={14} />
-                  </button>
-                  <Link className="pf-link-row" to="/contact">
-                    <span><Icon name="help" size={16} /> Help & Support</span>
-                    <Icon name="chevron" size={14} />
-                  </Link>
-                </SettingsCard>
               </div>
             )}
 
-            {/* ---- Wishlist ---- */}
             {!loading && activeTab === 'wishlist' && (
               <div>
                 <div className="pf-filters">
@@ -581,7 +563,6 @@ function Profile() {
               </div>
             )}
 
-            {/* ---- Notifications ---- */}
             {!loading && activeTab === 'notifications' && (
               <div>
                 {upcomingBookings.length === 0 && <p className="pf-muted">You're all caught up.</p>}
@@ -612,8 +593,6 @@ function Profile() {
     </section>
   );
 }
-
-/* ---------- small pieces ---------- */
 
 function InfoCard({ icon, label, value, editing, children }) {
   const isEditing = editing && children;
@@ -700,7 +679,6 @@ function BookingRow({ booking, vehicle, onView }) {
   );
 }
 
-// what the status pill shows (the CSS class keeps the raw name for pending / cancelled / completed)
 function bookingStatusLabel(status) {
   if (status === 'confirmed') return 'upcoming';
   if (status === 'picked_up') return 'picked up';
@@ -709,7 +687,6 @@ function bookingStatusLabel(status) {
 
 const PAYMENT_LABELS = { upi: 'UPI', card: 'Card', razorpay: 'Razorpay', cod: 'Cash on Delivery' };
 
-// Full details of one booking + the QR code the team scans at pickup.
 function BookingViewModal({ booking, vehicle, onClose }) {
   const [qrUrl, setQrUrl] = useState('');
   const type = (booking.vehicleType || '').toLowerCase();
@@ -719,7 +696,6 @@ function BookingViewModal({ booking, vehicle, onClose }) {
 
   useEffect(() => {
     let ignore = false;
-    // the QR links to this booking's admin verification page
     QRCode.toDataURL(`${window.location.origin}/admin/verify/${booking._id}`, { width: 240, margin: 1 })
       .then((url) => !ignore && setQrUrl(url))
       .catch(() => !ignore && setQrUrl(''));
@@ -757,7 +733,6 @@ function BookingViewModal({ booking, vehicle, onClose }) {
         </div>
 
         <div className="pf-bv-body">
-          {/* top row: image (left, same place as the booking card) + name/status | QR code (right) */}
           <div className="pf-bv-top">
             <div className="pf-bv-left">
               <div className="pf-bv-image">
