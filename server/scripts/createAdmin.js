@@ -1,56 +1,46 @@
-
+// SAVE THIS AS: server/scripts/createAdmin.js
+// RUN FROM THE server FOLDER:
+//   node scripts/createAdmin.js 'youradmin@email.com' 'YourPassword123'
+// MONGODB_URI in server/.env must be the SAME Atlas URI that Render uses
+// (same cluster AND same database name).
 require('dotenv').config();
-const readline = require('readline');
 const mongoose = require('mongoose');
-const connectDB = require('../config/db');
 const Admin = require('../models/Admin');
 
-function ask(question) {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-
-  return new Promise((resolve) => {
-    rl.question(question, (answer) => {
-      rl.close();
-      resolve(answer.trim());
-    });
-  });
-}
-
-async function createAdmin() {
-  const [, , emailArg, passwordArg] = process.argv;
-
-  const email = emailArg || (await ask('Admin email: '));
-  const password = passwordArg || (await ask('Admin password: '));
+async function main() {
+  const [email, password] = process.argv.slice(2);
 
   if (!email || !password) {
-    console.error('Both an email and a password are required.');
+    console.error("Usage: node scripts/createAdmin.js 'email' 'password'");
     process.exit(1);
   }
-
   if (password.length < 6) {
-    console.error('Password must be at least 6 characters.');
+    console.error('Password must be at least 6 characters');
+    process.exit(1);
+  }
+  if (!process.env.MONGODB_URI) {
+    console.error('MONGODB_URI is missing in your .env file');
     process.exit(1);
   }
 
-  await connectDB();
+  await mongoose.connect(process.env.MONGODB_URI);
+  console.log('Connected to database:', mongoose.connection.name);
 
-  const existingAdmin = await Admin.findOne({ email: email.toLowerCase() });
+  let admin = await Admin.findOne({ email: email.toLowerCase().trim() });
 
-  if (existingAdmin) {
-    // the pre('save') hook on the Admin model re-hashes this automatically
-    existingAdmin.password = password;
-    await existingAdmin.save();
-    console.log(`Updated the password for existing admin: ${email}`);
+  if (admin) {
+    admin.password = password; // pre-save hook hashes it
+    await admin.save();
+    console.log('Admin already existed, password updated:', admin.email);
   } else {
-    await Admin.create({ email, password });
-    console.log(`Created new admin account: ${email}`);
+    admin = await Admin.create({ email, password });
+    console.log('Admin created:', admin.email);
   }
 
   await mongoose.disconnect();
-  process.exit(0);
 }
 
-createAdmin().catch((err) => {
-  console.error('Could not create the admin account:', err.message);
+main().catch((err) => {
+  console.error('createAdmin failed:', err.message);
   process.exit(1);
 });
