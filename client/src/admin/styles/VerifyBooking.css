@@ -105,13 +105,28 @@
   color: var(--a-yellow-600);
 }
 
+/* ---------- Actions: message on top, buttons below ---------- */
+
 .verify-actions {
   display: flex;
+  flex-wrap: wrap;          /* lets the message take its own line */
   gap: 10px;
   margin-top: 22px;
 }
+
+/* the message (any non-button child): full width, above the buttons */
+.verify-actions > :not(.ad-btn) {
+  flex: 0 0 100%;
+  margin: 0 0 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  color: #b42323;
+}
+
 .verify-actions .ad-btn {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;             /* stops the Cancel button overflowing the card */
 }
 
 /* final-state button shown after a booking is completed / cancelled */
@@ -140,5 +155,8 @@
   }
   .verify-actions {
     flex-direction: column;
+  }
+  .verify-actions .ad-btn {
+    flex: none;
   }
 }
