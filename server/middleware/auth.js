@@ -1,10 +1,9 @@
-// SAVE THIS AS: server/middleware/auth.js  (replace the file I gave you before)
+// SAVE THIS AS: server/middleware/auth.js  (replace the old file)
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Admin = require('../models/Admin');
 
 // Admin tokens load the Admin account, normal tokens load the User account.
-// req.role is 'admin' or 'user'.
 async function verifyToken(req, res, next) {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
@@ -24,11 +23,11 @@ async function verifyToken(req, res, next) {
     const id = decoded.id || decoded._id;
 
     if (decoded.role === 'admin') {
-      const admin = await Admin.findById(id);
+      // Explicitly find admin, handling select: false fields if any are triggered
+      const admin = await Admin.findById(id).select('+password +profileImage');
       if (!admin) {
         return res.status(401).json({ success: false, message: 'Admin account not found, please login again' });
       }
-      // role is kept on req.user too, in case another route checks req.user.role
       req.user = { id: String(admin._id), _id: admin._id, email: admin.email, role: 'admin' };
       req.role = 'admin';
     } else {
