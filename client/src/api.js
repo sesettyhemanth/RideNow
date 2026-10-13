@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Ensure the base URL always includes /api whether provided in env or defaulting to localhost
+const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUrl}/api`;
 
-// central axios instance, so every page hits the same backend url
+// Central axios instance, so every page hits the correct backend url with /api
 const api = axios.create({
   baseURL: API_URL,
 });
