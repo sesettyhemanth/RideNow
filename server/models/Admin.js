@@ -1,42 +1,35 @@
+// SAVE THIS AS: server/models/Admin.js
+// Only replace your old file if it has no extra fields you still need.
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const imageSchema = require('./imageSchema');
 
 const adminSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: true,
+      required: [true, 'Email is required'],
       unique: true,
       lowercase: true,
       trim: true,
     },
     password: {
       type: String,
-      required: true,
-      select: false,
+      required: [true, 'Password is required'],
+      minlength: 6,
+      select: false, // only returned when asked for with .select('+password')
     },
-    // profile details edited on the admin Settings page
-    name: { type: String, trim: true, default: 'Administrator' },
-    phone: { type: String, trim: true, default: '' },
-    location: { type: String, trim: true, default: '' },
-
-    profileImage: { type: imageSchema, select: false },
-    hasProfileImage: { type: Boolean, default: false },
-    profileImageUpdatedAt: { type: Date },
   },
   { timestamps: true }
 );
 
 adminSchema.pre('save', async function hashPassword(next) {
   if (!this.isModified('password')) return next();
-
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
-adminSchema.methods.comparePassword = function comparePassword(candidatePassword) {
-  return bcrypt.compare(candidatePassword, this.password);
+adminSchema.methods.comparePassword = function comparePassword(candidate) {
+  return bcrypt.compare(candidate, this.password);
 };
 
 module.exports = mongoose.model('Admin', adminSchema);
