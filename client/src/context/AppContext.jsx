@@ -1,3 +1,4 @@
+// SAVE THIS AS: client/src/context/AppContext.jsx  (replace the old file)
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AppContext = createContext(null);
@@ -26,18 +27,36 @@ export function AppProvider({ children }) {
   const [user, setUser] = useState(() => readSaved('ridenow_user'));
   const [admin, setAdmin] = useState(() => readSaved('ridenow_admin'));
 
+  // keeps storage in step with later changes (profile edits and so on)
   useEffect(() => persist('ridenow_user', user), [user]);
   useEffect(() => persist('ridenow_admin', admin), [admin]);
 
-  const loginUser = (userData, token) => setUser({ ...userData, token });
-  const logoutUser = () => setUser(null);
+  // login / logout also save RIGHT AWAY. If we waited for the effects above, the page
+  // we navigate to could send its first request before the token was in storage,
+  // and that request would fail with 401 and bounce the person back to /login.
+  const loginUser = (userData, token) => {
+    const next = { ...userData, token };
+    persist('ridenow_user', next);
+    setUser(next);
+  };
+  const logoutUser = () => {
+    persist('ridenow_user', null);
+    setUser(null);
+  };
 
   const updateUser = (userData) => {
     setUser((prev) => ({ ...userData, token: prev?.token }));
   };
 
-  const loginAdmin = (adminData, token) => setAdmin({ ...adminData, token });
-  const logoutAdmin = () => setAdmin(null);
+  const loginAdmin = (adminData, token) => {
+    const next = { ...adminData, token };
+    persist('ridenow_admin', next);
+    setAdmin(next);
+  };
+  const logoutAdmin = () => {
+    persist('ridenow_admin', null);
+    setAdmin(null);
+  };
 
   const updateAdmin = (adminData, token) => {
     setAdmin((prev) => ({ ...prev, ...adminData, token: token || prev?.token }));
