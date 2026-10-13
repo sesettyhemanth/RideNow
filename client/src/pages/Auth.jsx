@@ -1,3 +1,4 @@
+// SAVE THIS AS: client/src/pages/Auth.jsx  (replace the old file)
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import api from '../api.js';
@@ -168,7 +169,7 @@ function Auth({ mode: modeProp }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
-  const { loginUser, loginAdmin } = useApp();
+  const { loginUser, loginAdmin, logoutUser, logoutAdmin } = useApp();
 
   // mode comes from the prop if given, otherwise from the URL (/signup => signup)
   const mode = modeProp || (pathname.startsWith('/signup') ? 'signup' : 'login');
@@ -199,18 +200,27 @@ function Auth({ mode: modeProp }) {
     setError('');
     setLoading(true);
 
-    // try admin login first - only the real admin email/password will ever match
     try {
-      const adminRes = await api.post('/admin/login', loginForm);
-      loginAdmin(adminRes.data.admin, adminRes.data.token);
-      navigate('/admin');
-      return;
-    } catch {
-      // not an admin, fall through to the normal user login below
-    }
+      // try admin login first - only the real admin email/password will ever match
+      try {
+        const adminRes = await api.post('/admin/login', loginForm);
+        logoutUser(); // never keep a user login next to an admin login
+        loginAdmin(adminRes.data.admin, adminRes.data.token);
+        navigate('/admin');
+        return;
+      } catch (err) {
+        // 401 = not an admin, so try the normal user login below.
+        // Anything else (no connection, server error) is a real problem, so show it.
+        if (err.response?.status !== 401) {
+          setError(
+            err.response?.data?.message || 'Cannot reach the server. Check the API URL and try again.'
+          );
+          return;
+        }
+      }
 
-    try {
       const userRes = await api.post('/auth/login', loginForm);
+      logoutAdmin(); // never keep an admin login next to a user login
       loginUser(userRes.data.data, userRes.data.token);
       navigate(redirectTo);
     } catch (err) {
@@ -234,6 +244,7 @@ function Auth({ mode: modeProp }) {
       setLoading(true);
       const { name, email, phone, password } = signupForm;
       const res = await api.post('/auth/signup', { name, email, phone, password });
+      logoutAdmin();
       loginUser(res.data.data, res.data.token);
       navigate('/');
     } catch (err) {
@@ -251,6 +262,7 @@ function Auth({ mode: modeProp }) {
 
       try {
         const res = await api.post('/auth/google', { credential });
+        logoutAdmin();
         loginUser(res.data.data, res.data.token);
         navigate(isLogin ? redirectTo : '/');
       } catch (err) {
@@ -262,7 +274,7 @@ function Auth({ mode: modeProp }) {
         setLoading(false);
       }
     },
-    [isLogin, loginUser, navigate, redirectTo]
+    [isLogin, loginUser, logoutAdmin, navigate, redirectTo]
   );
 
   return (
