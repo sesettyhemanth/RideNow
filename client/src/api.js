@@ -18,17 +18,25 @@ function readSaved(key) {
   }
 }
 
-// Admin pages live under /admin and must use the admin login.
-// Every other page must use the normal user login.
-function isAdminPage() {
-  return window.location.pathname.startsWith('/admin');
+// Check if we are on an admin page or hitting an admin endpoint
+function isEligibleForAdminToken(configUrl = '') {
+  const isPathAdmin = window.location.pathname.startsWith('/admin');
+  const isUrlAdmin = configUrl.includes('/admin');
+  return isPathAdmin || isUrlAdmin;
 }
 
 api.interceptors.request.use((config) => {
-  const saved = isAdminPage() ? readSaved('ridenow_admin') : readSaved('ridenow_user');
+  const adminData = readSaved('ridenow_admin');
+  const userData = readSaved('ridenow_user');
 
-  if (saved?.token) {
-    config.headers.Authorization = `Bearer ${saved.token}`;
+  // Prioritize admin token if this is an admin context, otherwise fall back to user token
+  const shouldUseAdmin = isEligibleForAdminToken(config.url);
+  const activeToken = shouldUseAdmin 
+    ? (adminData?.token || userData?.token) 
+    : (userData?.token || adminData?.token);
+
+  if (activeToken) {
+    config.headers.Authorization = `Bearer ${activeToken}`;
   }
 
   return config;
