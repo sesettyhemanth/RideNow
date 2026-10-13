@@ -1,6 +1,8 @@
+// SAVE THIS AS: server/models/User.js  (replace the old file)
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const imageSchema = require('./imageSchema');
+const licenseFields = require('./licenseFields');
 
 const userSchema = new mongoose.Schema(
   {
@@ -92,6 +94,10 @@ const userSchema = new mongoose.Schema(
       enum: ['not_submitted', 'pending', 'verified', 'rejected'],
       default: 'not_submitted',
     },
+
+    // issue date, valid-until date and address (these were missing from the schema,
+    // so Mongoose was silently dropping them before)
+    ...licenseFields,
 
     favorites: [
       {
