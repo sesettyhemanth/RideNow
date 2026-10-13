@@ -172,7 +172,7 @@ function AdminUsers() {
     setLoading(true);
     setError('');
     try {
-      const res = await api.get('/users');
+      const res = await api.get('/admin/users');
       setUsers([...(res.data.data || [])].sort(byNewest));
     } catch (err) {
       setError(err.response?.data?.message || 'Could not load users. Please try again.');

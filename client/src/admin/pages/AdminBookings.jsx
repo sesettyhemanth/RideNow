@@ -58,7 +58,7 @@ function AdminBookings() {
     setLoading(true);
     setError('');
     try {
-      const res = await api.get('/bookings');
+      const res = await api.get('/admin/bookings');
       setBookings([...(res.data.data || [])].sort(byNewest));
     } catch (err) {
       setError(err.response?.data?.message || 'Could not load bookings. Please try again.');
