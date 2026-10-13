@@ -1,7 +1,9 @@
-
+// SAVE THIS AS: server/routes/admin.js  (replace the old file)
 const express = require('express');
 const router = express.Router();
 const Admin = require('../models/Admin');
+const User = require('../models/User');
+const Booking = require('../models/Booking');
 const generateToken = require('../utils/generateToken');
 const imageUpload = require('../utils/imageUpload');
 const { verifyToken, requireAdmin } = require('../middleware/auth');
@@ -43,7 +45,7 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Email and password are required' });
     }
 
-    const admin = await Admin.findOne({ email: email.toLowerCase() }).select('+password');
+    const admin = await Admin.findOne({ email: String(email).toLowerCase().trim() }).select('+password');
 
     if (!admin || !(await admin.comparePassword(password))) {
       return res.status(401).json({ success: false, message: 'Invalid admin credentials' });
@@ -58,6 +60,7 @@ router.post('/login', async (req, res) => {
       admin: toPublicAdmin(admin),
     });
   } catch (err) {
+    console.error('Admin login error:', err.message);
     res.status(500).json({ success: false, message: 'Something went wrong logging you in' });
   }
 });
@@ -73,6 +76,56 @@ router.get('/me', verifyToken, requireAdmin, async (req, res) => {
     res.json({ success: true, data: toPublicAdmin(admin) });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Something went wrong fetching your account' });
+  }
+});
+
+// ---- Data for the admin pages (Bookings, Payments, Reports, Users) ----
+// AdminBookings.jsx calls GET /api/admin/bookings and AdminUsers.jsx calls GET /api/admin/users.
+// These routes did not exist before, which is why those pages stayed empty.
+
+router.get('/bookings', verifyToken, requireAdmin, async (req, res) => {
+  try {
+    const bookings = await Booking.find().populate('user', 'name email phone licenseStatus').sort({ createdAt: -1 });
+    res.json({ success: true, data: bookings });
+  } catch (err) {
+    console.error('Admin bookings error:', err.message);
+    res.status(500).json({ success: false, message: 'Failed to get bookings' });
+  }
+});
+
+router.get('/users', verifyToken, requireAdmin, async (req, res) => {
+  try {
+    const users = await User.find()
+      .select(
+        'name email phone licenseStatus licenseNumber licenseFullName licenseDob licenseMobile licenseClasses licenseIssueDate licenseValidUntil licenseAddress licenseSubmittedAt licenseImage.contentType licenseBackImage.contentType googleId createdAt'
+      )
+      .sort({ createdAt: -1 });
+
+    const shaped = users.map((user) => ({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      licenseStatus: user.licenseStatus,
+      licenseNumber: user.licenseNumber,
+      licenseFullName: user.licenseFullName,
+      licenseDob: user.licenseDob,
+      licenseMobile: user.licenseMobile,
+      licenseClasses: user.licenseClasses || [],
+      licenseIssueDate: user.licenseIssueDate || null,
+      licenseValidUntil: user.licenseValidUntil || null,
+      licenseAddress: user.licenseAddress || '',
+      licenseSubmittedAt: user.licenseSubmittedAt,
+      hasLicenseImage: Boolean(user.licenseImage?.contentType),
+      hasLicenseBackImage: Boolean(user.licenseBackImage?.contentType),
+      isGoogleAccount: Boolean(user.googleId),
+      createdAt: user.createdAt,
+    }));
+
+    res.json({ success: true, data: shaped });
+  } catch (err) {
+    console.error('Admin users error:', err.message);
+    res.status(500).json({ success: false, message: 'Failed to get users' });
   }
 });
 

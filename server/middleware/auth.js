@@ -23,11 +23,26 @@ async function verifyToken(req, res, next) {
     const id = decoded.id || decoded._id;
 
     if (decoded.role === 'admin') {
-      // Explicitly find admin, handling select: false fields if any are triggered
-      const admin = await Admin.findById(id).select('+password +profileImage');
+      // No '+password' / '+profileImage' here: the middleware only needs to know who the admin is,
+      // and loading the photo bytes on every request is wasteful.
+      let admin = null;
+
+      try {
+        admin = await Admin.findById(id).select('email');
+      } catch (castErr) {
+        admin = null; // id in the token was not a valid ObjectId
+      }
+
+      // Fallback: the token's id is stale (admin was re-created or the database was reset)
+      // but the admin's email still exists. The token is signed by us, so its email is trusted.
+      if (!admin && decoded.email) {
+        admin = await Admin.findOne({ email: String(decoded.email).toLowerCase() }).select('email');
+      }
+
       if (!admin) {
         return res.status(401).json({ success: false, message: 'Admin account not found, please login again' });
       }
+
       req.user = { id: String(admin._id), _id: admin._id, email: admin.email, role: 'admin' };
       req.role = 'admin';
     } else {
