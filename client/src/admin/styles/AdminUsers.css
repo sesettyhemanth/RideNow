@@ -1,5 +1,7 @@
 /* License review modal on the admin Users page */
 
+/* ---------- Backdrop + modal shell ---------- */
+
 .ad-modal-backdrop {
   position: fixed;
   inset: 0;
@@ -23,78 +25,64 @@
   overflow: hidden;
 }
 
+/* ---------- Header ---------- */
+
 .ad-modal-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  padding: 18px 20px;
+  padding: 20px 24px;
   border-bottom: 1px solid #e5e7eb;
 }
 
 .ad-modal-head h2 {
-  margin: 0 0 2px;
+  margin: 0 0 4px;
   font-size: 1.1rem;
 }
+
+/* ---------- Body ---------- */
 
 .ad-modal-body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 24px;
   overflow-y: auto;
-  overflow-x: hidden; /* removes the horizontal scrollbar */
+  overflow-x: hidden;
 }
 
-/* ---------- Details form (label above value, in a grid) ---------- */
+/* ---------- Details box ---------- */
 
 .ad-license-meta {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
+  gap: 18px 32px;
   margin: 0;
+  padding: 18px 20px;
+  background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 12px;
 }
 
-.ad-field {
+.ad-license-meta > div {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 4px;
   min-width: 0;
-  padding: 12px 14px;
-  border-bottom: 1px solid #e5e7eb;
-  border-right: 1px solid #e5e7eb;
 }
 
-/* remove the outer borders so the wrapper border is the only edge */
-.ad-field:nth-child(2n) {
-  border-right: 0;
-}
-.ad-field:nth-last-child(-n + 2) {
-  border-bottom: 0;
-}
-
-/* wide fields (e.g. License number) span both columns */
-.ad-field--full {
-  grid-column: 1 / -1;
-  border-right: 0;
-}
-
-.ad-field-label {
-  font-size: 0.72rem;
+.ad-license-meta > div > :first-child {
+  font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: #6b7280;
 }
 
-.ad-field-value {
+.ad-license-meta > div > :last-child {
   font-size: 0.95rem;
   font-weight: 600;
   color: #111827;
-  white-space: normal;
   overflow-wrap: anywhere;
 }
 
@@ -103,25 +91,32 @@
 .ad-license-photos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
+  align-items: stretch;
 }
 
 .ad-license-photo {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 0;
   margin: 0;
-  padding: 10px;
+  padding: 14px;
   background: #f9fafb;
   border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-.ad-license-photo figcaption {
-  order: -1; /* label always sits on top, never beside the image */
+.ad-license-photo figcaption,
+.ad-license-photo > span,
+.ad-license-photo > p {
+  order: -1; /* label always on top of the image */
+  margin: 0;
   font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #374151;
 }
@@ -129,12 +124,11 @@
 .ad-license-photo img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 260px;
-  object-fit: contain;
-  background: #f3f4f6;
-  border-radius: 6px;
-  cursor: zoom-in;
+  max-width: 100%;
+  max-height: none;
+  aspect-ratio: 16 / 10; /* same height for front and back */
+  object-fit: cover;     /* use "contain" to avoid any cropping */
+  border-radius: 8px;
 }
 
 /* ---------- Footer ---------- */
@@ -143,23 +137,26 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding: 14px 20px;
+  padding: 16px 24px;
   border-top: 1px solid #e5e7eb;
 }
 
+/* ---------- Mobile ---------- */
+
 @media (max-width: 560px) {
-  .ad-license-meta,
+  .ad-modal-head,
+  .ad-modal-body,
+  .ad-modal-foot {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .ad-license-meta {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
   .ad-license-photos {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .ad-field,
-  .ad-field:nth-child(2n) {
-    border-right: 0;
-  }
-  .ad-field:nth-last-child(-n + 2) {
-    border-bottom: 1px solid #e5e7eb;
-  }
-  .ad-field:last-child {
-    border-bottom: 0;
   }
 }
