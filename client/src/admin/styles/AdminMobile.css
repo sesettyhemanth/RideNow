@@ -1,0 +1,509 @@
+
+@media (max-width: 900px) {
+  .admin-main {
+    overflow-x: hidden;
+    padding: 16px 14px calc(28px + env(safe-area-inset-bottom));
+  }
+
+  /* drawer: keep it usable on short screens */
+  .admin-sidebar {
+    padding-bottom: env(safe-area-inset-bottom);
+    box-shadow: 8px 0 30px rgba(7, 30, 53, 0.35);
+  }
+  .admin-nav-link {
+    height: 46px;
+  }
+
+  .admin-profile__menu {
+    width: min(230px, calc(100vw - 24px));
+  }
+
+  /* page header: title on top, actions below, full width */
+  .ad-page-header {
+    margin-bottom: 16px;
+  }
+  .ad-page-header h1 {
+    font-size: 21px;
+  }
+
+  /* row menu must never leave the screen */
+  .ad-row-menu {
+    max-width: calc(100vw - 24px);
+  }
+}
+
+@media (max-width: 700px) {
+  /* ---------- toolbar: search full width, filters two per row ---------- */
+  .ad-toolbar {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .ad-toolbar__spacer {
+    display: none;
+  }
+  .ad-toolbar > .ad-search {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  .ad-toolbar > .ad-select {
+    flex: 1 1 calc(50% - 5px);
+    min-width: 0;
+  }
+  .ad-toolbar > .ad-select select {
+    width: 100%;
+    min-width: 0;
+  }
+  .ad-toolbar > .ad-btn {
+    flex: 1 1 100%;
+  }
+  .ad-toolbar > .ad-daterange {
+    flex: 1 1 100%;
+  }
+  .ad-daterange__btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .ad-daterange__pop {
+    left: 0;
+    right: auto;
+    width: min(290px, calc(100vw - 28px));
+  }
+
+  /* ---------- table: comfortable swipe, no row-number column ---------- */
+  .ad-table-card {
+    padding: 12px 12px 14px;
+  }
+  .ad-table-scroll {
+    margin: 0 -12px;
+    padding: 0 12px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .ad-table {
+    min-width: 760px;
+  }
+  .ad-table .col-num {
+    display: none;
+  }
+  .ad-table thead th,
+  .ad-table tbody td {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .ad-table .col-actions {
+    padding-left: 10px;
+  }
+
+  .ad-bulkbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 12px;
+  }
+
+  /* ---------- pagination: info above, pages centred ---------- */
+  .ad-pagination {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-top: 14px;
+  }
+  .ad-pagination__pages {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .ad-page-btn {
+    min-width: 36px;
+    height: 36px;
+  }
+
+  /* ---------- modals: bottom sheet ---------- */
+  .ad-modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .ad-modal {
+    max-width: 100% !important;
+    max-height: 92vh;
+    border-radius: 18px 18px 0 0;
+  }
+  .ad-modal__header,
+  .ad-modal-head {
+    padding: 14px 16px;
+  }
+  .ad-modal__body,
+  .ad-modal-body {
+    padding: 16px;
+  }
+  .ad-modal__footer,
+  .ad-modal-foot {
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    gap: 8px;
+  }
+  .ad-modal__footer .ad-btn,
+  .ad-modal-foot .ad-btn {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* vehicle detail */
+  .vh-gallery__thumbs button {
+    width: 72px;
+    height: 54px;
+  }
+  .vh-facts div {
+    padding: 9px 0;
+  }
+  .vh-tagline {
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 560px) {
+  /* inputs at 16px stop iOS zooming the page on focus */
+  .ad-search input,
+  .ad-select select,
+  .ad-field input,
+  .ad-field select,
+  .ad-field textarea,
+  .st-input input,
+  .qr-manual input,
+  .ad-daterange__custom input {
+    font-size: 16px;
+  }
+
+  /* ---------- top bar ---------- */
+  .admin-topbar {
+    gap: 6px;
+    padding-right: 10px;
+  }
+  .admin-brand {
+    padding: 0 4px 0 12px;
+  }
+  /* REMOVED on mobile: global search box (each page has its own search) */
+  .admin-search {
+    display: none;
+  }
+  .admin-topbar__bell,
+  .admin-topbar__scan {
+    flex: none;
+  }
+
+  /* ---------- main area ---------- */
+  .admin-main {
+    padding: 14px 12px calc(24px + env(safe-area-inset-bottom));
+  }
+
+  /* ---------- page header ---------- */
+  .ad-page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .ad-page-header h1 {
+    font-size: 20px;
+    gap: 10px;
+  }
+  .ad-page-header p {
+    font-size: 12.5px;
+  }
+  .ad-page-header__actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ad-page-header__actions > * {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+  }
+  .ad-page-header__actions .ad-btn {
+    width: 100%;
+  }
+
+  /* ---------- cards ---------- */
+  .ad-card {
+    padding: 14px;
+  }
+  .ad-card__head {
+    margin-bottom: 10px;
+  }
+  .ad-card__head h3 {
+    font-size: 14.5px;
+  }
+
+  /* ---------- stat cards: compact 2 x 2 grid ---------- */
+  .ad-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .ad-stat {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+  }
+  .ad-stat__icon {
+    width: 38px;
+    height: 38px;
+  }
+  .ad-stat__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  .ad-stat__label {
+    font-size: 12px;
+  }
+  .ad-stat__value {
+    font-size: 21px;
+  }
+  .ad-stat__footer {
+    font-size: 11px;
+  }
+  /* REMOVED on mobile: small corner arrow on stat cards */
+  .ad-stat__chev {
+    display: none;
+  }
+
+  /* ---------- overview ---------- */
+  .ov-datechip {
+    width: 100%;
+    height: 40px;
+  }
+  .ov-range select {
+    min-width: 0;
+    width: 100%;
+  }
+  .ov-grid {
+    gap: 14px;
+  }
+  .ad-donut {
+    width: 150px;
+    height: 150px;
+  }
+  .ad-donut__center strong {
+    font-size: 26px;
+  }
+  .ov-distribution {
+    gap: 14px;
+  }
+  .ov-legend {
+    gap: 12px;
+  }
+  .ov-vehicles li {
+    gap: 8px;
+  }
+  /* REMOVED on mobile: availability text in the vehicles list (the status dot colour is enough) */
+  .ov-vehicles li .ov-avail {
+    font-size: 0;
+    gap: 0;
+  }
+  .ov-vehicles li .ov-avail i {
+    width: 9px;
+    height: 9px;
+  }
+
+  /* ---------- reports ---------- */
+  .rp-grid {
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .rp-bars__track {
+    height: 140px;
+  }
+  .rp-bars__label {
+    font-size: 11.5px;
+  }
+  .rp-types {
+    gap: 16px;
+  }
+
+  /* ---------- notifications ---------- */
+  .notifications-card {
+    padding: 2px 14px;
+  }
+  .notification-row {
+    gap: 12px;
+    padding: 13px 0;
+  }
+  .notification-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .notification-text {
+    font-size: 13px;
+  }
+
+  /* ---------- table sizing ---------- */
+  .ad-table {
+    min-width: 700px;
+  }
+  /* bigger tap targets for row actions */
+  .ad-icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .ad-btn--sm {
+    height: 34px;
+  }
+
+  /* ---------- vehicles form ---------- */
+  .vh-upload {
+    padding: 16px 12px;
+  }
+  .vh-existing__item {
+    width: 76px;
+    height: 58px;
+  }
+  .vh-gallery__main {
+    max-width: 100%;
+  }
+  .vh-facts div {
+    font-size: 12.5px;
+  }
+
+  /* ---------- license review modal (Users) ---------- */
+  .ad-license-meta {
+    padding: 14px;
+  }
+  .ad-license-photo {
+    padding: 10px;
+  }
+
+  /* ---------- settings ---------- */
+  .st-layout,
+  .st-main,
+  .st-side,
+  .st-panel,
+  .st-panel__col {
+    gap: 12px;
+  }
+  .st-tabs {
+    padding: 6px;
+    gap: 6px;
+  }
+  .st-tab {
+    font-size: 12.5px;
+  }
+  .st-profile__avatar {
+    width: 72px;
+    height: 72px;
+  }
+  .st-btn {
+    height: 42px;
+  }
+  .st-summary__top {
+    padding: 14px;
+  }
+  .st-facts {
+    padding: 4px 14px 12px;
+  }
+  .st-toast {
+    top: 68px;
+  }
+  /* REMOVED on mobile: quick-links card (same pages are in the drawer menu) */
+  .st-side .st-links {
+    display: none;
+  }
+
+  /* ---------- help ---------- */
+  .hp-faq__item summary {
+    font-size: 13px;
+    padding: 12px 0;
+  }
+  .hp-faq__item p {
+    padding-right: 4px;
+    font-size: 12.5px;
+  }
+  .hp-contact__btn {
+    width: 100%;
+  }
+
+  /* ---------- verify booking page ---------- */
+  .verify-page {
+    min-height: 60vh;
+    padding: 16px 12px;
+    align-items: flex-start;
+  }
+  .verify-card {
+    padding: 26px 16px 20px;
+  }
+  .verify-back {
+    top: 14px;
+    left: 14px;
+  }
+  .verify-icon {
+    width: 56px;
+    height: 56px;
+  }
+  .verify-card h1 {
+    font-size: 19px;
+  }
+  .verify-row {
+    font-size: 13px;
+    padding: 10px 0;
+  }
+  .verify-total strong {
+    font-size: 17px;
+  }
+  .verify-actions .ad-btn {
+    height: 44px;
+  }
+
+  /* ---------- QR scanner ---------- */
+  .qr-overlay {
+    padding: 0;
+    place-items: end center;
+  }
+  .qr-modal {
+    max-width: 100%;
+    border-radius: 18px 18px 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .qr-region {
+    min-height: 220px;
+  }
+  .qr-manual {
+    flex-direction: column;
+  }
+  .qr-manual button {
+    width: 100%;
+    height: 44px;
+  }
+}
+
+/* ==========================================================================
+   <= 380px  (small phones)
+   ========================================================================== */
+@media (max-width: 380px) {
+  .ad-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ad-stat {
+    flex-direction: row;
+    align-items: center;
+  }
+  .ad-toolbar > .ad-select {
+    flex: 1 1 100%;
+  }
+  .ad-page-header__actions > * {
+    flex: 1 1 100%;
+  }
+  .ad-donut {
+    width: 136px;
+    height: 136px;
+  }
+  .rp-bars {
+    gap: 4px;
+  }
+  .st-tab {
+    flex: 1 1 100%;
+  }
+}
+
+/* ==========================================================================
+   Short landscape phones: drop the drawer artwork so the menu stays reachable
+   ========================================================================== */
+@media (max-width: 900px) and (max-height: 640px) {
+  .admin-sidebar-art {
+    display: none !important;
+  }
+}
