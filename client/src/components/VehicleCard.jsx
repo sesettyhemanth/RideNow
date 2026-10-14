@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { vehicleImageUrl, vehicleImageCount } from '../utils/vehicleImage.js';
 import '../styles/VehicleCard.css';
+import '../styles/Mobile.css';
 
 function VehicleCard({ vehicle, isFavorite, onToggleFavorite }) {
   const typeBadge = {

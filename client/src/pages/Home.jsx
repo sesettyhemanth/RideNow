@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Home.css';
+import '../styles/Mobile.css';
 
 import heroImage from '../assets/auth.png';
 import bikeImg from '../assets/bike.png';

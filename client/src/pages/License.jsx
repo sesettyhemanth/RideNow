@@ -4,6 +4,7 @@ import { useApp } from '../context/AppContext.jsx';
 import LicenseSection from '../components/LicenseSection.jsx';
 import '../styles/License.css';
 import '../styles/BookingSteps.css';
+import '../styles/Mobile.css';
 
 function License() {
   const { user } = useApp();

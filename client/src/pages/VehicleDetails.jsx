@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import api from '../api.js';
 import { vehicleImageUrl, vehicleImageCount } from '../utils/vehicleImage.js';
 import '../styles/VehicleDetails.css';
+import '../styles/Mobile.css';
 
 function Icon({ size = 18, strokeWidth = 1.8, children }) {
   return (

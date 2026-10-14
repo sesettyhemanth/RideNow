@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext.jsx';
 import logo from '../assets/logo.png'; 
 import '../styles/Navbar.css';
+import '../styles/Mobile.css';
 
 function Navbar() {
   const { user } = useApp();

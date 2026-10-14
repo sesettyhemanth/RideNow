@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/HowItWorks.css';
+import '../styles/Mobile.css';
 
 import heroImg from '../assets/hero.png';
 import step1Img from '../assets/vehicle.png';

@@ -6,6 +6,7 @@ import { vehicleImageUrl, vehicleImageCount } from '../utils/vehicleImage.js';
 import HERO_IMAGE from '../assets/hero.png';
 import FALLBACK_IMAGE from '../assets/vehicle.png';
 import '../styles/Vehicles.css';
+import '../styles/Mobile.css';
 
 const PAGE_SIZE = 12;
 const PRICE_MIN = 200;

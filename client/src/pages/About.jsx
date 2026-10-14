@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/About.css';
+import '../styles/Mobile.css';
 
 import heroImg from '../assets/hero.png';
 import storyImage from '../assets/about.png';

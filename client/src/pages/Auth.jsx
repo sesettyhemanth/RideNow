@@ -7,6 +7,7 @@ import GoogleLoginButton from '../components/GoogleLoginButton.jsx';
 import logo from '../assets/logo.png'; // same logo used in the Navbar
 import hero from '../assets/hero.png'; // car, bike and scooter
 import '../styles/Auth.css';
+import '../styles/Mobile.css';
 
 /* ------------------------------------------------------------------ */
 /* Inline SVG icons (stroke based, inherit colour via currentColor)    */

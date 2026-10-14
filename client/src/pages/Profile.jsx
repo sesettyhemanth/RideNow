@@ -7,6 +7,7 @@ import LicenseSection from '../components/LicenseSection.jsx';
 import { vehicleImageUrl, vehicleImageCount } from '../utils/vehicleImage.js';
 import '../styles/Profile.css';
 import '../styles/ProfileBookingView.css';
+import '../styles/Mobile.css';
 
 import heroImage from '../assets/hero.png';
 import bikeImg from '../assets/bike.png';

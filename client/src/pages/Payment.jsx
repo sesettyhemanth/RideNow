@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import api from '../api.js';
 import { vehicleImageUrl, vehicleImageCount } from '../utils/vehicleImage.js';
 import '../styles/Payment.css';
+import '../styles/Mobile.css';
 
 const paymentMethods = [
   { key: 'card', label: 'Credit / Debit Card', note: 'Visa, Mastercard, RuPay' },

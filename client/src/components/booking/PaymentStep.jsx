@@ -4,6 +4,7 @@ import { Ico, TypeTag, VehicleThumb, formatShortDate } from './BookingShared.jsx
 import '../../styles/Booking.validation.css';
 import '../../styles/BookingWizard.css';
 import '../../styles/BookingSteps.css';
+import '../styles/Mobile.css';
 
 const METHODS = [
   { key: 'upi', title: 'UPI', sub: 'Pay using Google Pay, PhonePe, Paytm, etc.', icon: 'upi', brands: ['G Pay', 'PhonePe', 'Paytm'] },

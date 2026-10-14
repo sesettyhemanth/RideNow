@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Contact.css';
+import '../styles/Mobile.css';
 import heroImg from '../assets/hero.png';
 
 const OFFICE_COORDS = '17.801205, 83.215256';

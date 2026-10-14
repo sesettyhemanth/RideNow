@@ -1,0 +1,1144 @@
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+#root {
+  overflow-x: clip;
+}
+
+@media (max-width: 900px) {
+
+  input,
+  select,
+  textarea,
+  .search-field input,
+  .search-field select,
+  .select-trigger,
+  .contact-form input,
+  .contact-form textarea,
+  .bk-input input,
+  .bk-input select,
+  .bk-plain,
+  .ld-field input[type='text'],
+  .ld-field input[type='tel'],
+  .ld-field input[type='date'],
+  .ld-field select,
+  .ld-field textarea,
+  .pf-field input,
+  .pf-field select,
+  .pf-info-card input,
+  .pf-info-card select,
+  .navbar-search input {
+    font-size: 16px;
+  }
+
+  .btn,
+  .nav-btn,
+  .bk-btn,
+  .pf-btn-solid,
+  .pf-btn-outline,
+  .contact-form .send-btn {
+    min-height: 44px;
+  }
+
+  .navbar .navbar-inner {
+    padding: 10px 16px;
+  }
+  .navbar-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .navbar-links {
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+  .navbar-links a {
+    width: 100%;
+    padding: 10px 0;
+  }
+  .navbar-actions-mobile {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .navbar-actions-mobile .nav-btn {
+    flex: 1 1 140px;
+  }
+
+  .home .container {
+    padding: 0 16px;
+  }
+  .home .hero {
+    padding-top: 20px;
+  }
+  .hero-inner {
+    gap: 16px;
+  }
+  .hero-image {
+    min-height: 0;
+  }
+  .hero-text > p {
+    max-width: 100%;
+  }
+  .hero-badges {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .hero-badge {
+    max-width: none;
+  }
+  .search-wrap {
+    margin-top: 20px;
+  }
+  .search-tabs {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .search-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .search-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .search-field {
+    min-height: 54px;
+  }
+  .search-field label,
+  .field-label {
+    font-size: 11px;
+  }
+  .search-box .btn {
+    grid-column: 1 / -1;
+    min-height: 48px;
+  }
+  .home .ride-types {
+    padding-top: 28px;
+  }
+  .ride-type-card {
+    min-height: 130px;
+  }
+  .why-us-card {
+    border-right: 0;
+  }
+  .home .why-us {
+    padding: 28px 16px 40px;
+  }
+
+  .about-page .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .about-hero {
+    padding: 24px 0 16px;
+  }
+  .about-hero h1 {
+    max-width: none;
+  }
+  .about-hero p {
+    max-width: none;
+  }
+  .about-hero-visual img {
+    max-height: 260px;
+  }
+  .about-features {
+    flex-wrap: wrap;
+  }
+
+  .impact-intro {
+    flex: none;
+    width: 100%;
+  }
+  .about-page .about-impact-wrap {
+    margin-top: 20px;
+    margin-bottom: 32px;
+  }
+  .about-impact {
+    padding: 18px 16px;
+    gap: 18px;
+  }
+  .story-image img {
+    min-height: 200px;
+    max-height: 280px;
+  }
+
+  .hiw-hero {
+    padding: 28px 0 24px;
+  }
+  .hiw-hero-inner {
+    gap: 12px;
+    min-height: 0;
+  }
+  .hiw-hero-visual {
+    min-height: 200px;
+  }
+  .hiw-hero-visual img {
+    object-position: center bottom;
+  }
+  .hiw-hero p {
+    max-width: none;
+  }
+  .how-it-works .steps-section {
+    padding: 0 16px 24px;
+  }
+  .steps-grid {
+    gap: 20px;
+  }
+  .step-image {
+    min-height: 160px;
+  }
+  .perks-section {
+    padding: 24px 0 20px;
+  }
+  .perks-grid {
+    gap: 24px 12px;
+  }
+  .hiw-cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hiw-cta-inner h3 {
+    max-width: none;
+  }
+
+  .contact-page .contact-hero-inner {
+    padding-block: 24px 8px;
+  }
+  .contact-hero-text,
+  .contact-intro {
+    max-width: none;
+  }
+  .contact-highlights {
+    gap: 12px 18px;
+  }
+  .contact-hero-img {
+    margin-top: 0;
+  }
+  .contact-form {
+    padding: 18px 16px;
+  }
+  .map-card iframe {
+    height: 240px;
+  }
+
+  .booking-page {
+    padding: 20px 0 48px;
+    min-height: 0;
+  }
+  .booking-page > .container {
+    padding: 0 16px;
+  }
+  .stepper {
+    padding: 12px 14px;
+    margin-bottom: 20px;
+  }
+  .bk-grid,
+  .bk-grid--pay {
+    gap: 16px;
+  }
+  .bk-col {
+    gap: 16px;
+  }
+  .bk-pay-head h2 {
+    font-size: 1.35rem;
+  }
+  .bk-pay-head-icon {
+    width: 48px;
+    height: 48px;
+  }
+  .bk-method-row {
+    flex-wrap: wrap;
+  }
+  .wizard-actions {
+    gap: 10px;
+  }
+  .wizard-actions .btn {
+    flex: 1 1 140px;
+  }
+  .payment-page,
+  .license-page {
+    padding-bottom: 40px;
+  }
+
+  .ld-head-icon {
+    flex-shrink: 0;
+  }
+  .ld-status {
+    margin-left: 0;
+  }
+  .ld-drop-preview {
+    flex-wrap: wrap;
+  }
+  .ld-drop-preview img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  .confirmation-page {
+    padding: 16px;
+    align-items: flex-start;
+  }
+  .confirmation-card {
+    max-width: 100%;
+    padding: 24px 16px;
+  }
+  .qr-box {
+    min-height: 0;
+    padding: 12px;
+  }
+  .qr-box img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+  }
+  .confirmation-actions {
+    flex-direction: column;
+  }
+
+  .profile-page,
+  .profile-page.container {
+    padding: 16px 16px 40px;
+  }
+  .pf-shell {
+    gap: 14px;
+  }
+  .pf-user {
+    padding: 18px 12px 12px;
+  }
+
+  .pf-nav {
+    flex-direction: row;
+    gap: 6px;
+    padding: 8px 10px 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .pf-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .pf-nav button {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+    padding: 10px 14px;
+    background: var(--pf-yellow-tint);
+  }
+  .pf-nav button span {
+    flex: none;
+  }
+  .pf-nav button > .pf-icon:last-child:not(:first-child) {
+    display: none;
+  }
+  .pf-nav-divider {
+    display: none;
+  }
+  .pf-banner {
+    padding: 16px;
+    min-height: 90px;
+    gap: 12px;
+  }
+  .pf-banner h1 {
+    font-size: 21px;
+  }
+  .pf-banner-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .pf-panel {
+    padding: 16px;
+  }
+  .pf-profile-head {
+    gap: 14px;
+  }
+  .pf-edit-actions {
+    width: 100%;
+  }
+  .pf-edit-actions > * {
+    flex: 1;
+  }
+  .pf-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .pf-filters::-webkit-scrollbar {
+    display: none;
+  }
+  .pf-filter {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .pf-booking {
+    gap: 12px;
+  }
+  .pf-booking-img {
+    height: 150px;
+  }
+  .pf-booking-amount {
+    min-width: 0;
+  }
+  .pf-doc-top {
+    flex-wrap: wrap;
+  }
+
+  .footer {
+    margin-top: 36px;
+  }
+  .footer .footer__inner {
+    width: calc(100% - 32px);
+  }
+  .footer__contact-line {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .navbar .navbar-inner {
+    padding: 8px 14px;
+    gap: 10px;
+  }
+  .logo-img {
+    height: 38px;
+  }
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+  .hero-badges {
+    margin-top: 20px;
+  }
+  .search-box {
+    padding: 8px;
+  }
+  .ride-type-card {
+    padding: 16px;
+  }
+  .ride-type-text {
+    max-width: 52%;
+  }
+  .stats-grid {
+    row-gap: 12px;
+  }
+  .stat {
+    border-right: 0;
+    justify-content: flex-start;
+    padding: 0 8px;
+  }
+  .section-head {
+    gap: 8px;
+  }
+  .ride-types h2,
+  .why-us h2 {
+    font-size: 18px;
+  }
+
+  .about-hero h1 {
+    font-size: 30px;
+  }
+  .about-feature {
+    width: 100%;
+  }
+  .explore-tag {
+    top: 6px;
+    right: 8px;
+  }
+  .explore-tag span {
+    font-size: 24px;
+  }
+  .explore-tag svg {
+    width: 90px;
+  }
+  .stat-item {
+    padding: 0;
+  }
+
+  .hiw-hero h1 {
+    font-size: 30px;
+  }
+  .hiw-hero .hiw-tagline {
+    font-size: 20px;
+    right: 8px;
+    top: 0;
+  }
+  .steps-heading h2,
+  .perks-section h2 {
+    font-size: 22px;
+  }
+  .perks-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .perk-card {
+    padding: 0 4px;
+  }
+
+  .contact-page h1 {
+    font-size: 30px;
+  }
+  .contact-page .contact-layout {
+    gap: 20px;
+    padding-block: 20px 32px;
+  }
+  .contact-highlights {
+    flex-direction: column;
+  }
+  .info-row {
+    margin-bottom: 18px;
+  }
+  .contact-info-sub {
+    max-width: none;
+  }
+  .office-card {
+    padding: 14px;
+  }
+
+  .auth-page {
+    padding: 16px 12px 32px;
+  }
+  .auth-card {
+    padding: 22px 16px;
+    border-radius: 18px;
+    max-width: 100%;
+  }
+  .auth-card h2 {
+    font-size: 22px;
+  }
+  .auth-subtitle {
+    margin-bottom: 20px;
+  }
+  .auth-intro h1 {
+    font-size: 28px;
+    margin-top: 20px;
+  }
+  .auth-intro .auth-description {
+    max-width: none;
+    font-size: 15px;
+  }
+  .auth-badges {
+    max-width: none;
+  }
+  .google-btn-container {
+    overflow: hidden;
+  }
+
+  .booking-page > .container {
+    padding: 0 12px;
+  }
+  .bk-card {
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+  .bk-card-title {
+    font-size: 1rem;
+  }
+  .bk-thumb--lg {
+    width: 120px;
+    height: 90px;
+  }
+  .bk-addon {
+    padding: 10px;
+    gap: 10px;
+  }
+  .bk-addon-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .bk-method-row {
+    padding: 12px;
+    gap: 10px;
+  }
+  .bk-method-icon {
+    width: 38px;
+    height: 38px;
+  }
+  .bk-method-body {
+    padding: 0 12px 14px;
+  }
+  .bk-total strong {
+    font-size: 1.25rem;
+  }
+  .bk-secure {
+    padding: 12px;
+  }
+  .bk-pay-head {
+    gap: 12px;
+  }
+  .wizard-actions {
+    flex-direction: column-reverse;
+  }
+  .wizard-actions .btn {
+    width: 100%;
+    flex: none;
+  }
+  .stepper-label {
+    font-size: 0.82rem;
+  }
+
+  .ld-card {
+    padding: 16px 14px 20px;
+  }
+  .ld-form-actions {
+    flex-direction: column-reverse;
+  }
+  .ld-form-actions .btn {
+    width: 100%;
+  }
+  .ld-tile {
+    padding: 10px;
+  }
+
+  .pf-banner h1 {
+    font-size: 19px;
+  }
+  .pf-banner p {
+    font-size: 13px;
+  }
+  .pf-info-card {
+    padding: 12px;
+  }
+  .pf-avatar-lg {
+    width: 70px;
+    height: 70px;
+  }
+  .pf-wish-actions {
+    flex-wrap: wrap;
+  }
+  .pf-notice {
+    flex-wrap: wrap;
+  }
+
+  .pf-bv-backdrop {
+    padding: 8px;
+  }
+  .pf-bv-modal {
+    max-height: calc(100dvh - 16px);
+    border-radius: 14px;
+  }
+  .pf-bv-head {
+    padding: 14px 16px;
+  }
+  .pf-bv-body {
+    padding: 14px;
+  }
+  .pf-bv-title h4 {
+    font-size: 1.15rem;
+  }
+  .pf-bv-qr {
+    flex-direction: column;
+  }
+  .pf-bv-qr small {
+    text-align: center;
+  }
+  .pf-bv-rows > div {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .pf-bv-rows dd {
+    text-align: left;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 16px;
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+  .footer__tagline {
+    font-size: 15px;
+    margin: 20px 0 18px;
+  }
+  .footer__brand-name {
+    font-size: 24px;
+  }
+  .footer__link,
+  .footer__contact-text {
+    font-size: 15px;
+  }
+  .footer__heading {
+    font-size: 17px;
+    margin-bottom: 14px;
+  }
+  .footer__contact-item {
+    gap: 12px;
+  }
+  .footer__bottom {
+    padding: 18px 16px 22px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .not-found {
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo-text {
+    font-size: 18px;
+  }
+  .hero h1,
+  .about-hero h1,
+  .hiw-hero h1,
+  .contact-page h1,
+  .auth-intro h1 {
+    font-size: 26px;
+  }
+  .perks-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer__inner {
+    grid-template-columns: 1fr;
+  }
+  .footer__col:last-child {
+    grid-column: auto;
+  }
+  .bk-thumb--lg {
+    width: 100px;
+    height: 76px;
+  }
+  .stepper-circle {
+    width: 26px;
+    height: 26px;
+  }
+  .pf-booking-img {
+    height: 120px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .not-found {
+    overflow-y: auto;
+  }
+  .auth-page {
+    align-items: flex-start;
+  }
+}
+
+@supports (padding: max(0px)) {
+  @media (max-width: 900px) {
+    .navbar .navbar-inner {
+      padding-left: max(14px, env(safe-area-inset-left));
+      padding-right: max(14px, env(safe-area-inset-right));
+    }
+    .footer__bottom {
+      padding-bottom: max(22px, env(safe-area-inset-bottom));
+    }
+  }
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  .vehicle-details-page {
+    padding-top: 20px;
+  }
+
+  .vehicle-details-status {
+    padding: 32px 16px;
+  }
+
+  .vehicle-details-page .vehicle-details {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 40px;
+  }
+
+  .vehicle-details-layout {
+    gap: 16px;
+  }
+
+  .vehicle-gallery-main {
+    height: 320px;
+  }
+
+  .vehicle-info {
+    padding: 18px 18px 20px;
+  }
+
+  .vehicles-page {
+    --veh-gutter: 20px;
+  }
+
+  .vehicles-page .vehicles-hero__inner {
+    padding-top: 24px;
+  }
+
+  .vehicles-page .vehicles-content {
+    padding-top: 20px;
+  }
+
+  .vehicles-grid {
+    gap: 16px;
+  }
+
+  .filters-panel {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .vehicles-page .vehicles-hero__inner {
+    height: auto;
+    padding-bottom: 20px;
+  }
+
+  .vehicles-hero__copy {
+    max-width: 100%;
+    padding-bottom: 0;
+  }
+
+  .vehicles-hero__subtitle {
+    margin-bottom: 16px;
+  }
+
+  .type-tabs {
+    display: flex;
+    width: 100%;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .type-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .type-tabs__item {
+    flex: 1 0 auto;
+    justify-content: center;
+    white-space: nowrap;
+    min-height: 40px;
+  }
+
+  .vehicles-toolbar {
+    gap: 10px;
+  }
+
+  .vehicles-toolbar__count {
+    width: 100%;
+  }
+
+  .vehicles-toolbar__controls {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .toolbar-btn,
+  .select-wrap select,
+  .filters-panel__clear,
+  .filters-panel__group select {
+    height: 40px;
+  }
+
+  .view-toggle button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .view-toggle {
+    margin-left: auto;
+  }
+
+  .filters-panel {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+  }
+
+  .filters-panel__group {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .filters-panel__clear {
+    width: 100%;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+
+  .pagination button {
+    min-width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .vehicles-page {
+    --veh-gutter: 14px;
+    padding-bottom: 40px;
+  }
+
+  .vehicles-grid--grid,
+  .vehicles-grid--list {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicles-grid--list .vehicle-card {
+    flex-direction: column;
+  }
+
+  .vehicles-grid--list .vehicle-card__media {
+    flex-basis: auto;
+    aspect-ratio: 1.55 / 1;
+    min-height: 0;
+  }
+
+  .vehicles-grid--list .vehicle-card__body {
+    padding: 16px;
+  }
+
+  .vehicles-grid--list .vehicle-card__cta {
+    align-self: stretch;
+    min-width: 0;
+  }
+
+  .vehicle-card__body {
+    padding: 14px;
+  }
+
+  .vehicle-card__specs {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+  }
+
+  .vehicle-card__cta {
+    min-height: 46px;
+  }
+
+  .vehicle-card__fav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .vehicle-card-image {
+    height: 190px;
+  }
+
+  .vehicle-card-top {
+    gap: 8px;
+  }
+
+  .favorite-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .vehicle-details-page {
+    padding-top: 16px;
+  }
+
+  .vehicle-details-page .vehicle-details {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .back-link {
+    margin-bottom: 12px;
+  }
+
+  .vehicle-gallery {
+    padding: 6px;
+    gap: 10px;
+  }
+
+  .vehicle-gallery-main {
+    height: 230px;
+  }
+
+  .vehicle-gallery-main img {
+    padding: 12px 40px;
+  }
+
+  .gallery-nav {
+    width: 34px;
+    height: 34px;
+  }
+
+  .gallery-prev {
+    left: 6px;
+  }
+
+  .gallery-next {
+    right: 6px;
+  }
+
+  .type-badge--overlay {
+    top: 8px;
+    left: 8px;
+  }
+
+  .gallery-thumb {
+    flex: 0 0 calc((100% - 24px) / 4);
+    height: 56px;
+  }
+
+  .thumb-scroll-btn {
+    display: none;
+  }
+
+  .vehicle-info {
+    padding: 16px 14px 18px;
+  }
+
+  .vehicle-info-head {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .vehicle-info-title h1 {
+    font-size: 24px;
+  }
+
+  .vehicle-price-large {
+    font-size: 26px;
+  }
+
+  .vehicle-quick-specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 0;
+    margin: 16px 0 18px;
+    padding-bottom: 16px;
+  }
+
+  .spec-item {
+    padding: 0 10px;
+  }
+
+  .spec-item:nth-child(odd) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .spec-text strong {
+    white-space: normal;
+  }
+
+  .spec-text small {
+    white-space: normal;
+    font-size: 11px;
+  }
+
+  .vehicle-about {
+    margin-bottom: 18px;
+  }
+
+  .vehicle-location {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .vehicle-features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .feature-chip {
+    min-height: 54px;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .feature-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .book-now-btn {
+    height: 54px;
+    font-size: 17px;
+    margin-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (max-width: 400px) {
+  .vehicles-hero__title {
+    font-size: 22px;
+  }
+
+  .vehicle-card-image {
+    height: 170px;
+  }
+
+  .vehicle-gallery-main {
+    height: 200px;
+  }
+
+  .vehicle-gallery-main img {
+    padding: 10px 36px;
+  }
+
+  .gallery-thumb {
+    height: 50px;
+  }
+
+  .vehicle-info-title h1 {
+    font-size: 22px;
+  }
+
+  .vehicle-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (hover: none) {
+  .vehicle-card:hover,
+  .vehicles-grid .vehicle-card:hover {
+    transform: none;
+  }
+
+  .vehicle-card__fav:hover,
+  .gallery-nav:hover,
+  .book-now-btn:hover {
+    transform: none;
+  }
+
+  .gallery-nav:hover {
+    transform: translateY(-50%);
+  }
+}

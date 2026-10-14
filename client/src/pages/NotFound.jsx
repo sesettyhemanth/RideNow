@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 import '../styles/NotFound.css'; 
+import '../styles/Mobile.css';
 const SKIN = '#f3c9a3'; 
 const SKIN_DARK = '#e0a982'; 
 const CHEEK = '#ee9a84'; 

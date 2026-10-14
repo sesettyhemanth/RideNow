@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import QRCode from 'qrcode';
 import '../styles/BookingConfirmation.css';
+import '../styles/Mobile.css';
 
 function BookingConfirmation() {
   const { state } = useLocation();

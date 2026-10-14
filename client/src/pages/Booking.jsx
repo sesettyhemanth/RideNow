@@ -12,6 +12,7 @@ import { calculatePricing } from '../utils/bookingPricing.js';
 import '../styles/Booking.css';
 import '../styles/BookingWizard.css';
 import '../styles/BookingSteps.css';
+import '../styles/Mobile.css';
 
 const STEP = { DETAILS: 1, PAYMENT: 2, DOCUMENTATION: 3, CONFIRMATION: 4 };
 
