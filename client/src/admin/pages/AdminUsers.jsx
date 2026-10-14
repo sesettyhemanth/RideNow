@@ -14,6 +14,7 @@ import { classLabel, formatLicenseDob, formatMobile } from '../../utils/licenseV
 import '../styles/AdminTheme.css';
 import '../styles/AdminTable.css';
 import '../styles/AdminUsers.css';
+import '../styles/AdminMobile.css';
 
 const PAGE_SIZE = 8;
 

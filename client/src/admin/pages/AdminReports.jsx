@@ -8,6 +8,7 @@ import { capitalize, downloadCSV, formatCurrency, parseDate, statusOf } from '..
 import '../styles/AdminTheme.css';
 import '../styles/AdminTable.css';
 import '../styles/AdminReports.css';
+import '../styles/AdminMobile.css';
 
 const MONTHS_BACK = 6;
 

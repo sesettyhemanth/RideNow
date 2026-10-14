@@ -5,6 +5,7 @@ import PageHeader from '../components/PageHeader.jsx';
 import { formatCurrency, formatDate, formatTime, statusOf } from '../utils/adminHelpers.js';
 import '../styles/AdminTheme.css';
 import '../styles/AdminNotifications.css';
+import '../styles/AdminMobile.css';
 
 function AdminNotifications() {
   const [items, setItems] = useState([]);

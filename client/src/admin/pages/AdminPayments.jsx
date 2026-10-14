@@ -30,6 +30,7 @@ import {
 import '../styles/AdminTheme.css';
 import '../styles/AdminTable.css';
 import '../styles/AdminPayments.css';
+import '../styles/AdminMobile.css';
 
 const PAGE_SIZE = 6;
 

@@ -7,6 +7,7 @@ import AdminAvatar from '../components/AdminAvatar.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import '../styles/AdminTheme.css';
 import '../styles/AdminSettings.css';
+import '../styles/AdminMobile.css';
 
 // Adjust these to match your router.
 const ROUTES = {

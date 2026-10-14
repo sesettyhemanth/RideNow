@@ -4,6 +4,7 @@ import PageHeader from '../components/PageHeader.jsx';
 import '../styles/AdminTheme.css';
 import '../styles/AdminSettings.css'; 
 import '../styles/AdminHelp.css';
+import '../styles/AdminMobile.css';
 
 
 const SUPPORT = {

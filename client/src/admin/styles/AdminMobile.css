@@ -470,9 +470,6 @@
   }
 }
 
-/* ==========================================================================
-   <= 380px  (small phones)
-   ========================================================================== */
 @media (max-width: 380px) {
   .ad-stats {
     grid-template-columns: minmax(0, 1fr);
@@ -499,9 +496,6 @@
   }
 }
 
-/* ==========================================================================
-   Short landscape phones: drop the drawer artwork so the menu stays reachable
-   ========================================================================== */
 @media (max-width: 900px) and (max-height: 640px) {
   .admin-sidebar-art {
     display: none !important;

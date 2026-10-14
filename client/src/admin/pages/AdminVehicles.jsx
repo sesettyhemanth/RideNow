@@ -16,6 +16,7 @@ import { capitalize, formatCurrency, parseDate, weeklyTrend } from '../utils/adm
 import '../styles/AdminTheme.css';
 import '../styles/AdminTable.css';
 import '../styles/AdminVehicles.css';
+import '../styles/AdminMobile.css';
 
 const PAGE_SIZE = 6;
 

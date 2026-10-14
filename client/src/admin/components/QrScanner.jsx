@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 import Icon from './Icon.jsx';
 import '../styles/QrScanner.css';
+import '../styles/AdminMobile.css';
 
 const REGION_ID = 'admin-qr-region';
 

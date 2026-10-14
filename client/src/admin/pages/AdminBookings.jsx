@@ -29,6 +29,7 @@ import {
 import '../styles/AdminTheme.css';
 import '../styles/AdminTable.css';
 import '../styles/AdminBookings.css';
+import '../styles/AdminMobile.css';
 
 const PAGE_SIZE = 6;
 const EMPTY_FILTERS = { q: '', status: '', type: '', payment: '' };

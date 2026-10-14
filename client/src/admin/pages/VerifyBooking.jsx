@@ -6,6 +6,7 @@ import { BookingStatusPill, Pill } from '../components/Badges.jsx';
 import { bookingCode, formatCurrency, formatDate, statusOf } from '../utils/adminHelpers.js';
 import '../styles/AdminTheme.css';
 import '../styles/VerifyBooking.css';
+import '../styles/AdminMobile.css';
 
 const LICENSE_TONE = { verified: 'success', pending: 'warning', rejected: 'danger', not_submitted: 'neutral' };
 

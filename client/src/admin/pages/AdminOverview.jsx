@@ -21,6 +21,7 @@ import {
 import '../styles/AdminTheme.css';
 import '../styles/AdminTable.css';
 import '../styles/AdminOverview.css';
+import '../styles/AdminMobile.css';
 
 const RANGES = [
   { value: 7, label: 'Last 7 Days' },

@@ -10,6 +10,7 @@ import { useOutsideClick } from '../hooks/adminHooks.js';
 import { bookingCode, transactionId } from '../utils/adminHelpers.js';
 import '../styles/AdminTheme.css';
 import '../styles/AdminLayout.css';
+import '../styles/AdminMobile.css';
 
 const NAV_ITEMS = [
   { to: '/admin', label: 'Dashboard', icon: 'layoutDashboard', end: true },
