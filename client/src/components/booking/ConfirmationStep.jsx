@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import QRCode from 'qrcode';
 import { formatDisplayDate } from '../../utils/bookingValidation.js';
 import '../../styles/BookingConfirmation.css';
-import '../../styles/Mobile.css';
 
 function ConfirmationStep({ booking }) {
   const navigate = useNavigate();
