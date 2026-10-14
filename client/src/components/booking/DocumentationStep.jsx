@@ -4,7 +4,7 @@ import LicenseSection from '../LicenseSection.jsx';
 import { licenseCoversVehicle } from '../../utils/licenseValidation.js';
 import '../../styles/Booking.validation.css';
 import '../../styles/BookingWizard.css';
-import '../styles/Mobile.css';
+import '../../styles/Mobile.css';
 
 function DocumentationStep({ vehicleType, onBack, onConfirm, confirming, confirmError }) {
   const { user } = useApp();

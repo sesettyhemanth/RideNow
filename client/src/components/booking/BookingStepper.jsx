@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/BookingStepper.css';
+import '../../styles/Mobile.css';
 
 export const BOOKING_STEPS = [
   { id: 1, label: 'Booking Details' },

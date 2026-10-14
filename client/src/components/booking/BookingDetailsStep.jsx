@@ -4,7 +4,7 @@ import { ADD_ON_OPTIONS, formatINR } from '../../utils/bookingPricing.js';
 import { Ico, TIME_OPTIONS, TypeTag, VehicleThumb, todayString } from './BookingShared.jsx';
 import '../../styles/Booking.validation.css';
 import '../../styles/BookingSteps.css';
-import '../styles/Mobile.css';
+import '../../styles/Mobile.css';
 
 function validate(details) {
   const e = {};
