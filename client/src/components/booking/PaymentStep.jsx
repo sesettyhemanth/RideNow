@@ -9,7 +9,7 @@ const METHODS = [
   { key: 'upi', title: 'UPI', sub: 'Pay using Google Pay, PhonePe, Paytm, etc.', icon: 'upi', brands: ['G Pay', 'PhonePe', 'Paytm'] },
   { key: 'card', title: 'Credit / Debit Card', sub: 'Visa, Mastercard, RuPay', icon: 'card', brands: ['VISA', 'Mastercard', 'RuPay'] },
   { key: 'netbanking', title: 'Net Banking', sub: 'Pay directly from your bank account', icon: 'bank', brands: [] },
-  { key: 'wallet', title: 'Wallet', sub: 'Pay using Paytm, PhonePe, Amazon Pay, etc.', icon: 'wallet', brands: ['Paytm', 'PhonePe', 'Amazon Pay'] },
+  { key: 'cod', title: 'Cash on Delivery', sub: 'Pay in cash when you pick up the vehicle', icon: 'wallet', brands: [] },
 ];
 
 const UPI_PATTERN = /^[\w.-]{2,}@[A-Za-z]{2,}$/;
@@ -57,6 +57,8 @@ function PaymentStep({ vehicle, details, pricing, payment, paid, onChange, onPai
     const d = v.replace(/\D/g, '').slice(0, 4);
     return d.length > 2 ? `${d.slice(0, 2)}/${d.slice(2)}` : d;
   };
+
+  const payLabel = paid ? 'Continue' : payment.method === 'cod' ? 'Confirm Order' : 'Pay Now';
 
   return (
     <div className="payment-page bk-pay">
@@ -189,6 +191,14 @@ function PaymentStep({ vehicle, details, pricing, payment, paid, onChange, onPai
                       </div>
                     </div>
                   )}
+
+                  {selected && m.key === 'cod' && (
+                    <div className="bk-method-body">
+                      <small>
+                        Pay the total amount in cash when you pick up the vehicle. Please keep the exact amount ready.
+                      </small>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -267,7 +277,7 @@ function PaymentStep({ vehicle, details, pricing, payment, paid, onChange, onPai
           </div>
 
           <button type="button" className="bk-btn bk-btn--primary" onClick={handlePay}>
-            <Ico name="lock" size={16} /> {paid ? 'Continue' : 'Pay Now'}
+            <Ico name="lock" size={16} /> {payLabel}
           </button>
           <button type="button" className="bk-btn bk-btn--outline" onClick={onBack}>
             Back to Booking Details

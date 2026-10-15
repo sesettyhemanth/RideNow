@@ -21,11 +21,11 @@ import {
   formatDate,
   formatTime,
   inRange,
-  paymentOf,
   rentalDays,
   statusOf,
   weeklyTrend,
 } from '../utils/adminHelpers.js';
+import { paymentOf } from '../utils/paymentRules.js';
 import '../styles/AdminTheme.css';
 import '../styles/AdminTable.css';
 import '../styles/AdminBookings.css';

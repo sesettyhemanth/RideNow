@@ -13,7 +13,6 @@ import Avatar from '../components/Avatar.jsx';
 import { MethodBadge, Pill } from '../components/Badges.jsx';
 import {
   ALL_TIME,
-  PAYMENT_METHODS,
   byNewest,
   bookingCode,
   bookingUserName,
@@ -23,10 +22,10 @@ import {
   formatTime,
   inRange,
   parseDate,
-  paymentOf,
   transactionId,
   weeklyTrend,
 } from '../utils/adminHelpers.js';
+import { PAYMENT_METHODS, paymentOf } from '../utils/paymentRules.js';
 import '../styles/AdminTheme.css';
 import '../styles/AdminTable.css';
 import '../styles/AdminPayments.css';
@@ -215,7 +214,6 @@ function AdminPayments() {
                 {label}
               </option>
             ))}
-            <option value="online">Online</option>
           </SelectField>
           <SelectField value={status} onChange={setStatus} label="Filter by status">
             <option value="">All Statuses</option>
