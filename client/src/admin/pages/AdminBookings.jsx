@@ -214,8 +214,8 @@ function AdminBookings() {
           </button>
         </form>
 
-        <div className="ad-table-scroll">
-          <table className="ad-table">
+        <div className="ad-table-scroll ad-table-scroll--fit">
+          <table className="ad-table ad-table--bookings">
             <thead>
               <tr>
                 <th className="col-num">#</th>

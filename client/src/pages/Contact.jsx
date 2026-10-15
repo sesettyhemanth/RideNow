@@ -10,7 +10,7 @@ const ADDRESS_LINE_2 = 'Visakhapatnam, Andhra Pradesh - 531173';
 const MAP_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(OFFICE_COORDS)}&z=16&output=embed`;
 const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(OFFICE_COORDS)}`;
 
-/* ---------- Inline SVG icons (stroke uses currentColor) ---------- */
+
 const Svg = ({ children, size = 20, ...rest }) => (
   <svg
     width={size}
@@ -151,7 +151,12 @@ function Contact() {
       <div className="contact-hero">
         <div className="container contact-hero-inner">
           <div className="contact-hero-text">
-            <span className="section-label">Get In Touch</span>
+            <span className="section-pill">
+              <span className="section-pill-icon">
+                <PinIcon size={16} />
+              </span>
+              Get In Touch
+            </span>
             <h1>
               We’re Here to <span className="highlight">Help You!</span>
             </h1>
@@ -164,7 +169,7 @@ function Contact() {
               {highlights.map(({ Icon, title, text }) => (
                 <li key={title}>
                   <span className="highlight-icon">
-                    <Icon size={18} />
+                    <Icon size={20} />
                   </span>
                   <div>
                     <strong>{title}</strong>
@@ -215,7 +220,7 @@ function Contact() {
           <p>Fill out the form below and we’ll get back to you soon.</p>
 
           <label className="field">
-            <UserIcon size={16} />
+            <UserIcon size={18} />
             <input
               name="name"
               placeholder="Your Name *"
@@ -226,7 +231,7 @@ function Contact() {
           </label>
 
           <label className="field">
-            <MailIcon size={16} />
+            <MailIcon size={18} />
             <input
               name="email"
               type="email"
@@ -238,7 +243,7 @@ function Contact() {
           </label>
 
           <label className="field">
-            <PhoneIcon size={16} />
+            <PhoneIcon size={18} />
             <input
               name="phone"
               type="tel"
@@ -250,7 +255,7 @@ function Contact() {
           </label>
 
           <label className="field field-textarea">
-            <ChatIcon size={16} />
+            <ChatIcon size={18} />
             <textarea
               name="message"
               placeholder="Your Message *"
@@ -263,7 +268,7 @@ function Contact() {
 
           {/* No global btn classes here - they were turning the button blue */}
           <button className="send-btn" type="submit">
-            <SendIcon size={16} />
+            <SendIcon size={18} />
             Send Message
           </button>
 
@@ -287,7 +292,7 @@ function Contact() {
           </div>
 
           <div className="office-card">
-            <span className="info-icon pin">
+            <span className="info-icon">
               <PinIcon size={20} />
             </span>
             <div>

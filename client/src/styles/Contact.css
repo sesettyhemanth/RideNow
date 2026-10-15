@@ -1,19 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
-
+/* Contact page - styled to match the Home hero (cream background, yellow pill label,
+   bold dark heading with yellow words, round soft-yellow icons, glowing yellow button). */
 
 .contact-page {
+  --c-ink: #111827;                 /* headings (same near-black as Home) */
   --c-navy: var(--navy, #0f1b3d);
   --c-yellow: #fdb913;
-  --c-yellow-dark: #f5a800;
-  --c-yellow-soft: #fff1c9;
+  --c-yellow-dark: #f5a800;         /* yellow text / icons */
+  --c-yellow-btn: #ffbd2e;          /* button */
+  --c-yellow-soft: #ffe7a8;         /* round icon background */
+  --c-yellow-pill: #ffefbf;         /* pill label background */
   --c-cream: #fffaf0;
-  --c-text-gray: var(--text-gray, #5b6475);
+  --c-text-gray: var(--text-gray, #6b7280);
   --c-text-dark: var(--text-dark, #1f2937);
-  --c-border: var(--border, #e8e4d8);
+  --c-border: #f1e6cc;
   --c-success: var(--success, #16a34a);
 
-  /* Full-page background colour (change this one value to re-tint the page) */
   --c-page-bg: #fff4e3;
+
+  --icon-circle: 44px;              /* every round icon uses this size */
 
   --space-1: 8px;
   --space-2: 12px;
@@ -43,8 +47,7 @@ body:has(.contact-page) {
 .contact-page .contact-hero {
   position: relative;
   display: flex;
-  align-items: center; 
-  min-width: auto;
+  align-items: center;
   min-height: 400px;
   overflow: hidden;
 }
@@ -53,91 +56,112 @@ body:has(.contact-page) {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-block: var(--space-6); 
+  padding-block: var(--space-6);
 }
 
 .contact-hero-text {
-  max-width: 480px;
+  max-width: 540px;
 }
 
-.contact-page .section-label {
-  display: inline-block;
-  font-size: 11px;
+/* pill label - same look as "Your Ride • Your Way" on Home */
+.contact-page .section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 20px 5px 5px;
+  border-radius: 999px;
+  background: var(--c-yellow-pill);
+  color: var(--c-ink);
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--c-yellow-dark);
+  line-height: 1;
+}
+.contact-page .section-pill-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c-yellow);
+  color: var(--c-ink);
 }
 
 .contact-page h1 {
-  margin: var(--space-1) 0 var(--space-2);
-  color: var(--c-navy);
-  font-size: 42px;
+  margin: var(--space-3) 0 var(--space-2);
+  color: var(--c-ink);
+  font-size: 46px;
   line-height: 1.1;
   font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .contact-page .highlight {
   display: block;
-  color: var(--c-yellow);
+  color: var(--c-yellow-dark);
 }
 
 .contact-intro {
-  max-width: 330px;
-  margin: 0 0 var(--space-4);
+  max-width: 440px;
+  margin: 0 0 var(--space-5);
   color: var(--c-text-gray);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
+/* three feature items: round icon + two-line text (like the Home row) */
 .contact-highlights {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3) var(--space-4);
+  /* always 3 items in ONE row (wider than the text column above it) */
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  width: max-content;
 }
 
 .contact-highlights li {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-2);
+  white-space: nowrap;
 }
 
 .highlight-icon {
-  width: 32px;
-  height: 32px;
+  width: var(--icon-circle);
+  height: var(--icon-circle);
   flex-shrink: 0;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: var(--c-yellow-soft);
-  color: var(--c-yellow-dark);
+  color: var(--c-ink);
 }
 
 .contact-highlights strong {
   display: block;
-  font-size: 11px;
+  font-size: 13.5px;
   font-weight: 600;
   line-height: 1.3;
-  color: var(--c-navy);
+  color: var(--c-ink);
 }
 
 .contact-highlights small {
   display: block;
-  font-size: 10px;
+  font-size: 12.5px;
   line-height: 1.3;
   color: var(--c-text-gray);
 }
 
 .contact-hero-img {
-  --hero-edge: 92px;         
+  --hero-edge: 92px;
   position: absolute;
   right: var(--hero-edge);
   top: 50%;
   bottom: auto;
-  transform: translateY(-50%);  
+  transform: translateY(-50%);
   height: 75%;
   width: 700px;
   max-width: 42%;
@@ -178,33 +202,34 @@ body:has(.contact-page) {
   display: grid;
   grid-template-columns: 1fr 1.05fr 1fr;
   gap: var(--space-5);
-  align-items: start; 
-  padding-block: var(--space-6) var(--space-7); 
+  align-items: start;
+  padding-block: var(--space-6) var(--space-7);
 }
 
 .contact-info {
-  padding-top: var(--space-4);
+  padding-top: var(--space-3);
 }
 
 .contact-info h2 {
   margin: 0 0 6px;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.3;
   font-weight: 800;
-  color: var(--c-navy);
+  color: var(--c-ink);
 }
 
 .contact-info-sub {
-  max-width: 260px;
+  max-width: 290px;
   margin: 0 0 var(--space-4);
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--c-text-gray);
 }
 
+/* every row: round icon on the left, text on the right, same gap everywhere */
 .info-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-3);
   margin-bottom: var(--space-4);
 }
@@ -214,48 +239,42 @@ body:has(.contact-page) {
 }
 
 .info-icon {
-  width: 38px;
-  height: 38px;
+  width: var(--icon-circle);
+  height: var(--icon-circle);
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 10px;
+  border-radius: 50%;
   background: var(--c-yellow-soft);
-  color: var(--c-yellow-dark);
-}
-
-.info-icon.pin {
-  width: auto;
-  height: auto;
-  background: transparent;
+  color: var(--c-ink);
 }
 
 .info-row h4,
 .office-card h4 {
   margin: 0 0 3px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.3;
   font-weight: 700;
-  color: var(--c-navy);
+  color: var(--c-ink);
 }
 
 .info-row p,
 .office-card p {
   margin: 0;
   color: var(--c-text-dark);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
 }
 
 .info-note {
   display: block;
   margin-top: 2px;
-  font-size: 10px;
+  font-size: 11.5px;
   line-height: 1.4;
   color: var(--c-text-gray);
 }
 
-/* Column 2: form */
+/* ---------- Column 2: form ---------- */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -263,22 +282,22 @@ body:has(.contact-page) {
   padding: var(--space-4);
   background: #fff;
   border: 1px solid var(--c-border);
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(15, 27, 61, 0.06);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(245, 168, 0, 0.12);
 }
 
 .contact-form h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.3;
   font-weight: 800;
-  color: var(--c-navy);
+  color: var(--c-ink);
 }
 
 .contact-form > p {
   margin: 0 0 var(--space-1);
   color: var(--c-text-gray);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.5;
 }
 
@@ -286,10 +305,10 @@ body:has(.contact-page) {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  padding: 0 var(--space-2);
+  padding: 0 var(--space-3);
   background: #fffdf8;
   border: 1px solid var(--c-border);
-  border-radius: 8px;
+  border-radius: 10px;
   color: var(--c-yellow-dark);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
@@ -307,19 +326,19 @@ body:has(.contact-page) {
 .contact-form textarea {
   flex: 1;
   min-width: 0;
-  padding: 12px 0;
+  padding: 14px 0;
   border: 0;
   outline: 0;
   background: transparent;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
   color: var(--c-text-dark);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #8a91a0;
+  color: #9097a5;
 }
 
 .field-textarea {
@@ -327,42 +346,45 @@ body:has(.contact-page) {
 }
 
 .field-textarea svg {
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
 .contact-form textarea {
-  min-height: 84px;
+  min-height: 96px;
   resize: vertical;
 }
 
-/* Higher specificity so global button styles can't override it */
+/* yellow button with soft glow - same as "Explore Vehicles" */
 .contact-form .send-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1);
+  gap: 10px;
   width: 100%;
-  margin-top: 4px;
-  padding: 13px var(--space-3);
+  margin-top: 6px;
+  padding: 15px var(--space-4);
   border: 0;
-  border-radius: 8px;
-  background: var(--c-yellow);
-  color: var(--c-navy);
+  border-radius: 12px;
+  background: var(--c-yellow-btn);
+  color: var(--c-ink);
   font-family: inherit;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.2;
   cursor: pointer;
-  transition: background 0.15s;
+  box-shadow: 0 8px 20px rgba(253, 185, 19, 0.38);
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 
 .contact-form .send-btn:hover {
   background: var(--c-yellow-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(245, 168, 0, 0.45);
 }
 
 .contact-form .send-btn:focus-visible,
 .directions-btn:focus-visible {
-  outline: 3px solid var(--c-navy);
+  outline: 3px solid var(--c-ink);
   outline-offset: 2px;
 }
 
@@ -372,7 +394,7 @@ body:has(.contact-page) {
   font-size: 13px;
 }
 
-/* Column 3: map + office */
+/* ---------- Column 3: map + office ---------- */
 .contact-side {
   display: flex;
   flex-direction: column;
@@ -382,8 +404,9 @@ body:has(.contact-page) {
 .map-card {
   overflow: hidden;
   border: 1px solid var(--c-border);
-  border-radius: 12px;
+  border-radius: 16px;
   background: #fff;
+  box-shadow: 0 10px 30px rgba(245, 168, 0, 0.1);
 }
 
 .map-card iframe {
@@ -395,12 +418,12 @@ body:has(.contact-page) {
 
 .office-card {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-2);
+  align-items: center;
+  gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  border: 1px solid #faedc8;
-  border-radius: 12px;
-  background: var(--c-cream);
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  background: #fff;
 }
 
 .directions-btn {
@@ -408,12 +431,12 @@ body:has(.contact-page) {
   align-items: center;
   gap: 6px;
   margin-top: var(--space-2);
-  padding: 7px 14px;
-  border: 1px solid var(--c-yellow);
-  border-radius: 6px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--c-yellow);
+  border-radius: 8px;
   background: #fff;
-  color: var(--c-navy);
-  font-size: 11px;
+  color: var(--c-ink);
+  font-size: 12px;
   font-weight: 600;
   line-height: 1.7;
   text-decoration: none;
@@ -425,7 +448,23 @@ body:has(.contact-page) {
 }
 
 .directions-btn:hover {
-  background: var(--c-yellow-soft);
+  background: var(--c-yellow-pill);
+}
+
+/* ---------- Small laptops: tighten the 3-in-a-row so it still fits ---------- */
+@media (max-width: 1200px) {
+  .contact-highlights {
+    gap: var(--space-3);
+  }
+  .contact-highlights li {
+    gap: var(--space-1);
+  }
+  .contact-highlights strong {
+    font-size: 12.5px;
+  }
+  .contact-highlights small {
+    font-size: 11.5px;
+  }
 }
 
 /* ---------- Tablet ---------- */
@@ -453,6 +492,9 @@ body:has(.contact-page) {
 
 /* ---------- Mobile ---------- */
 @media (max-width: 800px) {
+  .contact-page {
+    --icon-circle: 40px;
+  }
   .contact-page .contact-hero {
     display: block;
     min-height: 0;
@@ -473,6 +515,12 @@ body:has(.contact-page) {
   }
   .contact-page h1 {
     font-size: 34px;
+  }
+  /* phones: no room for 3 across, so stack them neatly */
+  .contact-highlights {
+    grid-template-columns: 1fr;
+    width: auto;
+    gap: var(--space-3);
   }
   .contact-page .contact-layout {
     grid-template-columns: 1fr;

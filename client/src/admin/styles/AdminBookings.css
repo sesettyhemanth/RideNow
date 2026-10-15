@@ -1,25 +1,115 @@
-/* Bookings relies on the shared table styles; this file only holds page-specific tweaks. */
+/* Bookings relies on the shared table styles; this file only holds page-specific tweaks.
+   Everything is scoped to .ad-table--bookings / .ad-table-scroll--fit so the other admin
+   tables (Vehicles, Users, Payments) are not affected.
+   Goal: the table always fits the page width - no horizontal scrollbar. */
 
-.ad-table .ad-cell .ad-thumb {
+/* the wrapper never scrolls sideways on desktop / laptop */
+.ad-table-scroll--fit {
+  overflow-x: hidden;
+}
+
+.ad-table--bookings {
+  table-layout: auto;
+  width: 100%;
+  font-size: 12px;
+}
+
+/* tighter cell padding */
+.ad-table--bookings thead th {
+  padding: 12px 6px;
+  font-size: 11.5px;
+}
+.ad-table--bookings tbody td {
+  padding: 10px 6px;
+}
+.ad-table--bookings .col-num {
+  width: 30px;
+}
+
+/* avatar / vehicle cells */
+.ad-table--bookings .ad-cell {
+  gap: 8px;
+}
+.ad-table--bookings .ad-cell .ad-thumb {
   background: #f4f5f8;
+  width: 40px !important;
+  height: 32px !important;
 }
-
-.ad-table td .ad-sub {
-  margin-top: 1px;
-}
-
-/* keep the 11-column table inside a 1440px viewport without a horizontal scrollbar */
-.ad-table .ad-cell > div,
-.ad-table .ad-cell > strong {
+.ad-table--bookings .ad-cell > div,
+.ad-table--bookings .ad-cell > strong {
   min-width: 0;
 }
-.ad-table .ad-cell .ad-sub {
-  max-width: 150px;
+
+/* long emails are cut with "..." */
+.ad-table--bookings .ad-cell .ad-sub {
+  max-width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.ad-table .ad-cell > strong {
+
+/* vehicle names may wrap to two lines */
+.ad-table--bookings .ad-cell > strong {
   white-space: normal;
-  max-width: 130px;
+  max-width: 110px;
   line-height: 1.3;
+}
+
+.ad-table--bookings td .ad-sub {
+  margin-top: 1px;
+  font-size: 11px;
+}
+
+/* smaller pills / badges / buttons */
+.ad-table--bookings .ad-pill {
+  padding: 3px 8px;
+  font-size: 11px;
+  gap: 5px;
+}
+.ad-table--bookings .ad-type {
+  padding: 3px 9px;
+  font-size: 11px;
+}
+.ad-table--bookings .ad-actions {
+  gap: 6px;
+}
+.ad-table--bookings .ad-actions .ad-btn--sm {
+  padding: 0 10px;
+}
+
+/* ---------- laptop screens: drop the "nice to have" parts so everything fits ---------- */
+@media (max-width: 1500px) {
+  /* hide the # column */
+  .ad-table--bookings th:nth-child(1),
+  .ad-table--bookings td:nth-child(1) {
+    display: none;
+  }
+  /* hide vehicle thumbnail */
+  .ad-table--bookings .ad-cell .ad-thumb {
+    display: none;
+  }
+  .ad-table--bookings .ad-cell .ad-sub {
+    max-width: 105px;
+  }
+  /* Type is already visible in the vehicle name, so hide this column */
+  .ad-table--bookings th:nth-child(5),
+  .ad-table--bookings td:nth-child(5) {
+    display: none;
+  }
+}
+
+/* ---------- small laptops / tablets: also hide the avatar ---------- */
+@media (max-width: 1200px) {
+  .ad-table--bookings .ad-avatar {
+    display: none;
+  }
+}
+
+/* ---------- phones: allow sideways scroll again, the table cannot fit ---------- */
+@media (max-width: 900px) {
+  .ad-table-scroll--fit {
+    overflow-x: auto;
+  }
+  .ad-table--bookings {
+    min-width: 820px;
+  }
 }
