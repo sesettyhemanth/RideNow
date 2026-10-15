@@ -1,14 +1,13 @@
-/* Contact page - styled to match the Home hero (cream background, yellow pill label,
-   bold dark heading with yellow words, round soft-yellow icons, glowing yellow button). */
+
 
 .contact-page {
-  --c-ink: #111827;                 /* headings (same near-black as Home) */
+  --c-ink: #111827;                
   --c-navy: var(--navy, #0f1b3d);
   --c-yellow: #fdb913;
-  --c-yellow-dark: #f5a800;         /* yellow text / icons */
-  --c-yellow-btn: #ffbd2e;          /* button */
-  --c-yellow-soft: #ffe7a8;         /* round icon background */
-  --c-yellow-pill: #ffefbf;         /* pill label background */
+  --c-yellow-dark: #f5a800;         
+  --c-yellow-btn: #ffbd2e;         
+  --c-yellow-soft: #ffe7a8;        
+  --c-yellow-pill: #ffefbf;       
   --c-cream: #fffaf0;
   --c-text-gray: var(--text-gray, #6b7280);
   --c-text-dark: var(--text-dark, #1f2937);
@@ -17,7 +16,7 @@
 
   --c-page-bg: #fff4e3;
 
-  --icon-circle: 44px;              /* every round icon uses this size */
+  --icon-circle: 44px;     
 
   --space-1: 8px;
   --space-2: 12px;
@@ -32,7 +31,6 @@
   overflow-x: hidden;
 }
 
-/* Paint the browser body too, so no white shows around or below the page */
 body:has(.contact-page) {
   background-color: #fff4e3;
 }
@@ -43,7 +41,6 @@ body:has(.contact-page) {
   box-sizing: border-box;
 }
 
-/* ---------- Hero ---------- */
 .contact-page .contact-hero {
   position: relative;
   display: flex;
@@ -63,7 +60,6 @@ body:has(.contact-page) {
   max-width: 540px;
 }
 
-/* pill label - same look as "Your Ride • Your Way" on Home */
 .contact-page .section-pill {
   display: inline-flex;
   align-items: center;
@@ -109,12 +105,10 @@ body:has(.contact-page) {
   line-height: 1.7;
 }
 
-/* three feature items: round icon + two-line text (like the Home row) */
 .contact-highlights {
   list-style: none;
   margin: 0;
   padding: 0;
-  /* always 3 items in ONE row (wider than the text column above it) */
   display: grid;
   grid-template-columns: repeat(3, max-content);
   align-items: center;
@@ -197,7 +191,6 @@ body:has(.contact-page) {
   color: var(--c-yellow);
 }
 
-/* ---------- Main 3-column layout ---------- */
 .contact-page .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1.05fr 1fr;
@@ -226,7 +219,6 @@ body:has(.contact-page) {
   color: var(--c-text-gray);
 }
 
-/* every row: round icon on the left, text on the right, same gap everywhere */
 .info-row {
   display: flex;
   align-items: center;
@@ -274,7 +266,6 @@ body:has(.contact-page) {
   color: var(--c-text-gray);
 }
 
-/* ---------- Column 2: form ---------- */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -354,7 +345,6 @@ body:has(.contact-page) {
   resize: vertical;
 }
 
-/* yellow button with soft glow - same as "Explore Vehicles" */
 .contact-form .send-btn {
   display: flex;
   align-items: center;
@@ -394,7 +384,6 @@ body:has(.contact-page) {
   font-size: 13px;
 }
 
-/* ---------- Column 3: map + office ---------- */
 .contact-side {
   display: flex;
   flex-direction: column;
@@ -451,7 +440,6 @@ body:has(.contact-page) {
   background: var(--c-yellow-pill);
 }
 
-/* ---------- Small laptops: tighten the 3-in-a-row so it still fits ---------- */
 @media (max-width: 1200px) {
   .contact-highlights {
     gap: var(--space-3);
@@ -467,7 +455,6 @@ body:has(.contact-page) {
   }
 }
 
-/* ---------- Tablet ---------- */
 @media (max-width: 1000px) {
   .hero-tagline {
     display: none;
@@ -490,7 +477,6 @@ body:has(.contact-page) {
   }
 }
 
-/* ---------- Mobile ---------- */
 @media (max-width: 800px) {
   .contact-page {
     --icon-circle: 40px;
@@ -516,7 +502,6 @@ body:has(.contact-page) {
   .contact-page h1 {
     font-size: 34px;
   }
-  /* phones: no room for 3 across, so stack them neatly */
   .contact-highlights {
     grid-template-columns: 1fr;
     width: auto;
