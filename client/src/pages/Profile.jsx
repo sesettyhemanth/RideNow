@@ -660,10 +660,21 @@ function BookingRow({ booking, vehicle, onView }) {
       </div>
 
       <div className="pf-booking-info">
-        <h4>{booking.vehicleName}</h4>
-        <span className="pf-tag">{booking.vehicleType}</span>
-        <p><Icon name="calendar" size={13} /> {booking.pickupDate} → {booking.dropoffDate}</p>
-        <p><Icon name="pin" size={13} /> {booking.pickupLocation}</p>
+        <div className="pf-booking-title">
+          <h4>{booking.vehicleName}</h4>
+          <span className="pf-tag">{booking.vehicleType}</span>
+        </div>
+        <p className="pf-booking-date">
+          <Icon name="calendar" size={14} />
+          <span>{formatDate(booking.pickupDate)}</span>
+          <i className="pf-booking-sep" />
+          <span>
+            {booking.pickupTime && booking.dropoffTime
+              ? `${booking.pickupTime} - ${booking.dropoffTime}`
+              : `to ${formatDate(booking.dropoffDate)}`}
+          </span>
+        </p>
+        <p><Icon name="pin" size={14} /> {booking.pickupLocation}</p>
       </div>
 
       <div className="pf-booking-amount">
@@ -671,11 +682,12 @@ function BookingRow({ booking, vehicle, onView }) {
           <i /> {status}
         </span>
         {booking._id && <small>Booking ID: #{String(booking._id).slice(-6).toUpperCase()}</small>}
-        <strong>₹{formatMoney(booking.totalAmount)}</strong>
-        <button type="button" className="pf-view-btn" onClick={() => onView(booking)}>
-          <Icon name="file" size={14} /> View
-        </button>
+        <strong>₹ {formatMoney(booking.totalAmount)}</strong>
       </div>
+
+      <button type="button" className="pf-view-btn" onClick={() => onView(booking)}>
+        <Icon name="eye" size={15} /> View Details
+      </button>
     </div>
   );
 }
