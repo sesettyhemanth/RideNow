@@ -7,7 +7,7 @@ export const ADD_ON_OPTIONS = [
   { key: 'delivery', label: 'Delivery (Within City)', price: 100, emoji: '🚚' },
 ];
 
-export const PLATFORM_FEE = 50;
+export const PLATFORM_FEE = 10;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 

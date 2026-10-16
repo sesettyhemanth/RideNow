@@ -1,9 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { PICKUP_LOCATIONS } from '../../utils/bookingValidation.js';
 import { ADD_ON_OPTIONS, formatINR } from '../../utils/bookingPricing.js';
+import { FREE_HELMETS, HELMET_KEY, HELMET_PRICE, MAX_HELMETS } from '../../utils/rentalPricing.js';
+import AddOnIcon from './AddOnIcon.jsx';
 import { Ico, TIME_OPTIONS, TypeTag, VehicleThumb, todayString } from './BookingShared.jsx';
 import '../../styles/Booking.validation.css';
 import '../../styles/BookingSteps.css';
+import '../../styles/BookingAddons.css';
 
 function validate(details) {
   const e = {};
@@ -33,6 +36,9 @@ function BookingDetailsStep({ vehicle, details, onChange, pricing, onNext, onCan
         {errors[f]}
       </span>
     );
+
+  const helmets = details.helmets ?? FREE_HELMETS;
+  const setHelmets = (n) => onChange({ helmets: Math.min(MAX_HELMETS, Math.max(FREE_HELMETS, n)) });
 
   const toggleAddOn = (key) => {
     const has = details.addOns.includes(key);
@@ -68,17 +74,14 @@ function BookingDetailsStep({ vehicle, details, onChange, pricing, onNext, onCan
             </label>
             <div className="bk-input bk-input--icon">
               <Ico name="pin" />
-              <select
+              <input
                 id="bkLocation"
-                value={details.pickupLocation}
-                onChange={(e) => onChange({ pickupLocation: e.target.value })}
-              >
-                {PICKUP_LOCATIONS.map((loc) => (
-                  <option key={loc} value={loc}>
-                    {loc}
-                  </option>
-                ))}
-              </select>
+                type="text"
+                value={details.pickupLocation || PICKUP_LOCATIONS[0]}
+                readOnly
+                aria-readonly="true"
+                className="bk-fixed-location"
+              />
             </div>
           </div>
 
@@ -152,13 +155,44 @@ function BookingDetailsStep({ vehicle, details, onChange, pricing, onNext, onCan
 
           <ul className="bk-addons">
             {ADD_ON_OPTIONS.map((a) => {
+              if (a.key === HELMET_KEY) {
+                const extra = Math.max(0, helmets - FREE_HELMETS);
+                return (
+                  <li key={a.key}>
+                    <div className="bk-addon is-checked bk-addon--helmet">
+                      <input type="checkbox" checked readOnly disabled aria-label="One helmet is included free" />
+                      <span className="bk-addon-icon" aria-hidden="true">
+                        <AddOnIcon name="helmet" />
+                      </span>
+                      <span className="bk-addon-name">
+                        Helmet
+                        <small className="bk-addon-note">
+                          {FREE_HELMETS} free · {formatINR(HELMET_PRICE)} for each extra helmet
+                        </small>
+                      </span>
+                      <span className="bk-addon-price bk-helmet-ctrl">
+                        <span className="bk-qty" role="group" aria-label="Number of helmets">
+                          <button type="button" aria-label="Remove a helmet" onClick={() => setHelmets(helmets - 1)} disabled={helmets <= FREE_HELMETS}>
+                            −
+                          </button>
+                          <output aria-live="polite">{helmets}</output>
+                          <button type="button" aria-label="Add a helmet" onClick={() => setHelmets(helmets + 1)} disabled={helmets >= MAX_HELMETS}>
+                            +
+                          </button>
+                        </span>
+                        <span className="bk-helmet-total">{extra > 0 ? formatINR(extra * HELMET_PRICE) : 'Free'}</span>
+                      </span>
+                    </div>
+                  </li>
+                );
+              }
               const checked = details.addOns.includes(a.key);
               return (
                 <li key={a.key}>
                   <label className={`bk-addon${checked ? ' is-checked' : ''}`}>
                     <input type="checkbox" checked={checked} onChange={() => toggleAddOn(a.key)} />
                     <span className="bk-addon-icon" aria-hidden="true">
-                      {a.emoji}
+                      <AddOnIcon name={a.key} />
                     </span>
                     <span className="bk-addon-name">{a.label}</span>
                     <span className="bk-addon-price">{formatINR(a.price)}</span>
@@ -188,7 +222,7 @@ function BookingDetailsStep({ vehicle, details, onChange, pricing, onNext, onCan
             {pricing.addOns.map((a) => (
               <div key={a.key}>
                 <dt>{a.label}</dt>
-                <dd>{formatINR(a.amount)}</dd>
+                <dd>{a.amount === 0 ? 'Free' : formatINR(a.amount)}</dd>
               </div>
             ))}
             <div>

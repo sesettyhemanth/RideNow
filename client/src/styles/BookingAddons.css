@@ -1,0 +1,15 @@
+/* add-on icons, helmet counter and the fixed pickup location */
+.bk-addon-icon svg { width: 22px; height: 22px; color: #b45309; display: block; }
+
+.bk-addon-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; color: #7a6a55; }
+
+.bk-helmet-ctrl { display: inline-flex; align-items: center; gap: 14px; margin-left: auto; }
+.bk-helmet-total { min-width: 52px; text-align: right; }
+
+.bk-qty { display: inline-flex; align-items: center; border: 1px solid #f0c969; border-radius: 10px; background: #fff; overflow: hidden; }
+.bk-qty button { width: 32px; height: 32px; border: 0; background: transparent; font-size: 18px; line-height: 1; cursor: pointer; color: #1e2a5a; }
+.bk-qty button:hover:not(:disabled) { background: #fff3cf; }
+.bk-qty button:disabled { opacity: .35; cursor: not-allowed; }
+.bk-qty output { min-width: 28px; text-align: center; font-weight: 700; }
+
+.bk-fixed-location { cursor: default; }

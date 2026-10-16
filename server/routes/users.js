@@ -62,7 +62,7 @@ router.put('/me', verifyToken, async (req, res) => {
 
     if (location !== undefined) {
       const cleanLocation = String(location).trim();
-      if (cleanLocation.length > 100) {
+      if (cleanLocation.length > 300) {
         return res.status(400).json({ success: false, message: 'Location is too long' });
       }
       user.location = cleanLocation || null;

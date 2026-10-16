@@ -62,7 +62,7 @@ const userSchema = new mongoose.Schema(
     location: {
       type: String,
       trim: true,
-      maxlength: 100,
+      maxlength: 300, // also holds the licence address, so it needs more room than a city name
       default: null,
     },
 

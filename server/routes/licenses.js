@@ -108,6 +108,13 @@ router.post('/upload', verifyToken, receiveLicenseFiles, async (req, res) => {
     user.licenseAddress = String(address).trim();
     user.licenseImage = { data: front.buffer, contentType: front.mimetype };
     user.licenseBackImage = { data: back.buffer, contentType: back.mimetype };
+    // keep the Profile Details tab in sync with the licence form:
+    // full name -> name, mobile -> phone, date of birth -> dateOfBirth, address -> location
+    user.name = String(fullName).trim();
+    user.phone = `+91${mobileDigits}`;
+    user.dateOfBirth = new Date(dob);
+    user.location = String(address).trim();
+
     user.licenseSubmittedAt = new Date();
     user.licenseStatus = 'pending'; // an admin must review it - never auto-verified
     await user.save();

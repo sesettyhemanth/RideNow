@@ -20,8 +20,6 @@ api.interceptors.request.use((config) => {
   const adminData = readSaved('ridenow_admin');
   const userData = readSaved('ridenow_user');
 
-  // Inside /admin ONLY the admin token is used. Falling back to a normal user's token there
-  // just produces confusing "account not found" / "admin access required" errors.
   const isAdminContext = window.location.pathname.startsWith('/admin');
   const activeToken = isAdminContext ? adminData?.token : userData?.token;
 

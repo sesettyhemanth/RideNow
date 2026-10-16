@@ -8,7 +8,7 @@ import PaymentStep from '../components/booking/PaymentStep.jsx';
 import DocumentationStep from '../components/booking/DocumentationStep.jsx';
 import ConfirmationStep from '../components/booking/ConfirmationStep.jsx';
 import { PICKUP_LOCATIONS } from '../utils/bookingValidation.js';
-import { calculatePricing } from '../utils/bookingPricing.js';
+import { calculatePricingWithHelmets as calculatePricing } from '../utils/rentalPricing.js';
 import '../styles/Booking.css';
 import '../styles/BookingWizard.css';
 import '../styles/BookingSteps.css';
@@ -22,7 +22,8 @@ const INITIAL_DETAILS = {
   dropoffDate: '',
   pickupTime: '10:00 AM',
   dropoffTime: '10:00 AM',
-  addOns: ['helmet'],
+  helmets: 1, // 1 helmet is free, extra ones are charged
+  addOns: [],
 };
 
 const INITIAL_PAYMENT = { method: 'upi', upiId: '', cardNumber: '', expiry: '', cvv: '', cardName: '' };
@@ -120,7 +121,8 @@ function Booking() {
         dropoffDate: details.dropoffDate,
         pickupTime: details.pickupTime,
         dropoffTime: details.dropoffTime,
-        addOns: details.addOns,
+        addOns: details.helmets > 0 ? ['helmet', ...details.addOns] : details.addOns,
+        helmetCount: details.helmets,
         totalAmount: pricing.totalAmount,
         paymentMethod: payment.method,
       });
@@ -204,7 +206,7 @@ function Booking() {
           />
         )}
 
-        {step === STEP.CONFIRMATION && booking && <ConfirmationStep booking={booking} />}
+        {step === STEP.CONFIRMATION && booking && <ConfirmationStep booking={booking} details={details} />}
       </div>
     </section>
   );

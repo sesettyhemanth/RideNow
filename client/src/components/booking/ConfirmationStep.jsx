@@ -4,10 +4,13 @@ import QRCode from 'qrcode';
 import { formatDisplayDate } from '../../utils/bookingValidation.js';
 import '../../styles/BookingConfirmation.css';
 
-function ConfirmationStep({ booking }) {
+function ConfirmationStep({ booking, details }) {
   const navigate = useNavigate();
   const [qrCodeUrl, setQrCodeUrl] = useState('');
   // booked while the license is still waiting for admin verification
+  // the saved booking may not echo the times back, so fall back to what was chosen in step 1
+  const startTime = booking.pickupTime || details?.pickupTime;
+  const endTime = booking.dropoffTime || details?.dropoffTime;
   const isPending = booking.status === 'pending';
 
   useEffect(() => {
@@ -53,12 +56,18 @@ function ConfirmationStep({ booking }) {
             <strong>{booking.pickupLocation}</strong>
           </div>
           <div className="confirmation-row">
-            <span>Pickup Date</span>
-            <strong>{formatDisplayDate(booking.pickupDate)}</strong>
+            <span>Start Date &amp; Time</span>
+            <strong>
+              {formatDisplayDate(booking.pickupDate)}
+              {startTime ? `, ${startTime}` : ''}
+            </strong>
           </div>
           <div className="confirmation-row">
-            <span>Drop-off Date</span>
-            <strong>{formatDisplayDate(booking.dropoffDate)}</strong>
+            <span>End Date &amp; Time</span>
+            <strong>
+              {formatDisplayDate(booking.dropoffDate)}
+              {endTime ? `, ${endTime}` : ''}
+            </strong>
           </div>
           <div className="confirmation-row confirmation-total">
             <span>Total Amount</span>

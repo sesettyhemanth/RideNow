@@ -26,6 +26,9 @@ const LICENCE_TYPES = [
   { value: 'both', label: 'Both (Two Wheeler + Four Wheeler)', classes: ['2w', '4w'] },
 ];
 
+// same size for the Edit / Cancel / Submit buttons
+const ACTION_BTN = { minWidth: 220, height: 46, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' };
+
 const todayString = () => new Date().toISOString().slice(0, 10);
 const toDateInput = (value) => (value ? String(value).slice(0, 10) : '');
 
@@ -344,7 +347,7 @@ function LicenseSection({ vehicleType }) {
               ['car', 'Type of Licence', user.licenseClasses?.length ? user.licenseClasses.map(classLabel).join(' + ') : '—'],
               ['calendar', 'Issue Date', formatLicenseDob(user.licenseIssueDate)],
               ['calendar', 'Validity Date', formatLicenseDob(user.licenseValidUntil)],
-              ['pin', 'Address', user.licenseAddress || '—', true],
+              ['pin', 'Address', user.licenseAddress || '—'],
             ].map(([icon, label, value, wide]) => (
               <div key={label} className={`ld-tile${wide ? ' ld-tile--wide' : ''}`}>
                 <span className="ld-tile-icon"><Ico name={icon} /></span>
@@ -381,7 +384,7 @@ function LicenseSection({ vehicleType }) {
           )}
 
           <div className="ld-summary-actions">
-            <button type="button" className="btn btn-outline" onClick={() => setEditing(true)}>
+            <button type="button" className="btn btn-outline" style={ACTION_BTN} onClick={() => setEditing(true)}>
               Edit &amp; resubmit
             </button>
           </div>
@@ -513,12 +516,12 @@ function LicenseSection({ vehicleType }) {
               {err('validityDate')}
             </div>
 
-            <div className="ld-field ld-field--address">
+            <div className="ld-field">
               <label className="ld-label" htmlFor="ldAddress"><Ico name="pin" /> Address</label>
-              <textarea
+              <input
                 id="ldAddress"
                 ref={refs.address}
-                rows={3}
+                type="text"
                 placeholder="Enter your full address"
                 value={address}
                 className={cls('address')}
@@ -561,11 +564,11 @@ function LicenseSection({ vehicleType }) {
 
           <div className="ld-form-actions">
             {editing && (
-              <button type="button" className="btn btn-outline" onClick={() => setEditing(false)} disabled={saving}>
+              <button type="button" className="btn btn-outline" style={ACTION_BTN} onClick={() => setEditing(false)} disabled={saving}>
                 Cancel
               </button>
             )}
-            <button className="btn btn-primary" type="submit" disabled={saving}>
+            <button className="btn btn-primary" style={ACTION_BTN} type="submit" disabled={saving}>
               {saving ? 'Submitting...' : 'Submit for Verification'}
             </button>
           </div>

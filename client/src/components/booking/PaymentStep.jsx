@@ -12,12 +12,13 @@ const METHODS = [
   { key: 'cod', title: 'Cash on Delivery', sub: 'Pay in cash when you pick up the vehicle', icon: 'wallet', brands: [] },
 ];
 
-const UPI_PATTERN = /^[\w.-]{2,}@[A-Za-z]{2,}$/;
+// 10-digit mobile number (starts with 6-9) + @ + bank handle, e.g. 9346539195@axl
+const UPI_PATTERN = /^[6-9]\d{9}@[A-Za-z]{2,15}$/;
 
 function validate(payment) {
   const e = {};
   if (payment.method === 'upi' && !UPI_PATTERN.test(payment.upiId.trim())) {
-    e.upiId = 'Enter a valid UPI ID (for example name@bank)';
+    e.upiId = 'Enter a valid UPI ID: 10-digit mobile number@bank (for example 9346539195@axl)';
   }
   if (payment.method === 'card') {
     if (payment.cardNumber.replace(/\s/g, '').length !== 16) e.cardNumber = 'Enter the 16-digit card number';
@@ -118,10 +119,14 @@ function PaymentStep({ vehicle, details, pricing, payment, paid, onChange, onPai
                         id="payUpi"
                         className={`bk-plain${cls('upiId')}`}
                         type="text"
-                        placeholder="yourname@bank"
+                        placeholder="9346539195@axl"
+                        inputMode="email"
+                        autoComplete="off"
+                        maxLength={25}
                         value={payment.upiId}
-                        onChange={(e) => onChange({ upiId: e.target.value })}
+                        onChange={(e) => onChange({ upiId: e.target.value.replace(/\s/g, '') })}
                       />
+                      <small>Format: 10-digit mobile number@bank (example: 9346539195@axl)</small>
                       {err('upiId')}
                     </div>
                   )}
