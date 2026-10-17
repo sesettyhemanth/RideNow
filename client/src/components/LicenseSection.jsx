@@ -205,14 +205,14 @@ function LicenseSection({ vehicleType }) {
   const [editing, setEditing] = useState(false);
   const [fullName, setFullName] = useState(user.licenseFullName || user.name || '');
   const [mobile, setMobile] = useState(mobileDigits(user.licenseMobile || user.phone));
-  const [dob, setDob] = useState(toDateInput(user.licenseDob));
+  const [dob, setDob] = useState(toDateInput(user.licenseDob || user.dateOfBirth));
   const [licenseNumber, setLicenseNumber] = useState('');
   const [licenceType, setLicenceType] = useState(typeFromClasses(user.licenseClasses));
   const [issueDate, setIssueDate] = useState(toDateInput(user.licenseIssueDate));
   const [validityDate, setValidityDate] = useState(toDateInput(user.licenseValidUntil));
   const [front, setFront] = useState(null);
   const [back, setBack] = useState(null);
-  const [address, setAddress] = useState(user.licenseAddress || '');
+  const [address, setAddress] = useState(user.licenseAddress || user.location || '');
 
   const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
