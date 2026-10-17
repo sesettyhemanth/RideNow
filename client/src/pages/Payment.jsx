@@ -44,7 +44,6 @@ function Payment() {
 
     try {
       setSubmitting(true);
-      // no need to send who's booking - the backend reads that from the login token
       const res = await api.post('/bookings', {
         vehicleId: vehicle.id,
         vehicleName: vehicle.name,
@@ -97,7 +96,7 @@ function Payment() {
             </div>
           </div>
           <div className="summary-row"><span>Pickup Date</span><span>{pickupDate}</span></div>
-          <div className="summary-row"><span>Drop-off Date</span><span>{dropoffDate}</span></div>
+          <div className="summary-row"><span>Drop off Date</span><span>{dropoffDate}</span></div>
           <div className="summary-row"><span>Pickup Location</span><span>{pickupLocation}</span></div>
           <div className="summary-row summary-total"><span>Total Amount</span><span>₹{totalAmount}</span></div>
         </div>
@@ -124,7 +123,7 @@ function Payment() {
             </label>
           ))}
 
-          <div className="secure-note">🔒 100% Secure Payments — your information is safe and encrypted.</div>
+          <div className="secure-note"> 100% Secure Payments — your information is safe and encrypted.</div>
         </div>
 
         <div className="card payment-block">
@@ -174,7 +173,7 @@ function Payment() {
             </div>
 
             <button className="btn btn-primary btn-block" type="submit" disabled={submitting}>
-              {submitting ? 'Processing...' : `🔒 Pay ₹${totalAmount}`}
+              {submitting ? 'Processing...' : ` Pay ₹${totalAmount}`}
             </button>
           </form>
         </div>

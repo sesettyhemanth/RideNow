@@ -119,14 +119,14 @@ function PaymentStep({ vehicle, details, pricing, payment, paid, onChange, onPai
                         id="payUpi"
                         className={`bk-plain${cls('upiId')}`}
                         type="text"
-                        placeholder="9346539195@axl"
+                        placeholder="mobilenumber@bank"
                         inputMode="email"
                         autoComplete="off"
                         maxLength={25}
                         value={payment.upiId}
                         onChange={(e) => onChange({ upiId: e.target.value.replace(/\s/g, '') })}
                       />
-                      <small>Format: 10-digit mobile number@bank (example: 9346539195@axl)</small>
+                      <small>Format: 10 digit mobile number@bank (example: mobilenumber@bank)</small>
                       {err('upiId')}
                     </div>
                   )}
@@ -215,7 +215,7 @@ function PaymentStep({ vehicle, details, pricing, payment, paid, onChange, onPai
             </span>
             <div>
               <strong>Your payment is secure and encrypted</strong>
-              <small>We use industry-standard security to keep your information safe.</small>
+              <small>We use industry standard security to keep your information safe.</small>
             </div>
           </div>
         </section>
@@ -254,11 +254,11 @@ function PaymentStep({ vehicle, details, pricing, payment, paid, onChange, onPai
               <dd>{details.pickupTime}</dd>
             </div>
             <div>
-              <dt><Ico name="calendar" size={14} /> Drop-off Date</dt>
+              <dt><Ico name="calendar" size={14} /> Drop off Date</dt>
               <dd>{formatShortDate(details.dropoffDate)}</dd>
             </div>
             <div>
-              <dt><Ico name="clock" size={14} /> Drop-off Time</dt>
+              <dt><Ico name="clock" size={14} /> Drop off Time</dt>
               <dd>{details.dropoffTime}</dd>
             </div>
           </dl>
